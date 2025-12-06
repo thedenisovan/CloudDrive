@@ -5,7 +5,7 @@
     "target": "ES2023",
     "strict": true,
     "esModuleInterop": true,
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     /* Base Options: */
     "skipLibCheck": true,
     "allowJs": true,
@@ -38,6 +38,8 @@
     // "lib": ["es2022", "dom", "dom.iterable"],
 
     /* If your code doesn't run in the DOM: */
-    "lib": ["es2022"]
+    "lib": ["es2022"],
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   }
 }
