@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "node",
     "target": "ES2023",
+    "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
     "ignoreDeprecations": "5.0",
@@ -39,7 +39,9 @@
 
     /* If your code doesn't run in the DOM: */
     "lib": ["es2022"],
-    "allowImportingTsExtensions": true,
-    "noEmit": true
-  }
+    "allowImportingTsExtensions": false,
+    "noEmit": false
+  },
+  "include": ["src/**/*.ts", "generated/**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/*.dev.ts"]
 }

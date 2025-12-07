@@ -13,9 +13,25 @@ datasource db {
   provider = "postgresql"
 }
 
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}
+
 model User {
   id       Int    @id @default(autoincrement())
   email    String @unique
   name     String
   password String
+}
+
+model Folder {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+}
+
+model File {
+  id Int @id @default(autoincrement())
 }

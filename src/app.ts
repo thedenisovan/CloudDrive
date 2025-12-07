@@ -4,15 +4,18 @@ import passport from 'passport';
 import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
-import genFunc from 'connect-pg-simple';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../generated/prisma/client.js';
+import { PrismaPg } from '@prisma/adapter-pg';
+import pool from './db/pool.js';
+
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
 
-const PostgresqlStore = genFunc(session);
+// adapter so i can use neon dp in my prisma project
+const adapter = new PrismaPg(pool);
 
 const app = express();
 const SECRET = process.env.NOT_FOR_YOU as string;
@@ -34,7 +37,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 2, // 2 days
     },
-    store: new PrismaSessionStore(new PrismaClient(), {
+    store: new PrismaSessionStore(new PrismaClient({ adapter }), {
       checkPeriod: 2 * 60 * 1000, //ms
       dbRecordIdIsSessionId: true,
       dbRecordIdFunction: undefined,
