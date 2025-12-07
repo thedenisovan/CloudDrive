@@ -5,7 +5,8 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import genFunc from 'connect-pg-simple';
-
+import { PrismaSessionStore } from '@quixo3/prisma-session-store';
+import { PrismaClient } from '@prisma/client';
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
@@ -33,9 +34,10 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 2, // 2 days
     },
-    store: new PostgresqlStore({
-      conString: process.env.LOCAL_CONNECTION,
-      tableName: 'session',
+    store: new PrismaSessionStore(new PrismaClient(), {
+      checkPeriod: 2 * 60 * 1000, //ms
+      dbRecordIdIsSessionId: true,
+      dbRecordIdFunction: undefined,
     }),
   })
 );
