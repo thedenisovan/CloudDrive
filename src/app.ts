@@ -4,38 +4,14 @@ import passport from 'passport';
 import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
+import genFunc from 'connect-pg-simple';
 
-// const pgSession = require('connect-pg-simple')(session);
 dotenv.config();
-
-// Interface extensions
-// declare module 'express-session' {
-//   interface SessionData {
-//     views: number;
-//   }
-// }
-// declare module 'express-serve-static-core' {
-//   interface Request {
-//     myName: string;
-//     id: number;
-//   }
-// }
-// declare global {
-//   namespace Express {
-//     interface User {
-//       id?: number;
-//       name: string;
-//       surname: string;
-//       email: string;
-//       pass: string;
-//       isMember: string;
-//       isAdmin: string;
-//     }
-//   }
-// }
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
+
+const PostgresqlStore = genFunc(session);
 
 const app = express();
 const SECRET = process.env.NOT_FOR_YOU as string;
@@ -57,10 +33,10 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 2, // 2 days
     },
-    // store: new pgSession({
-    //   pool,
-    //   tableName: 'session',
-    // }),
+    store: new PostgresqlStore({
+      conString: process.env.LOCAL_CONNECTION,
+      tableName: 'session',
+    }),
   })
 );
 
