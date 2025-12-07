@@ -49,16 +49,16 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => res.send('hi'));
 
-// app.get('/log-out', (req, res, next) => {
-//   req.logout((err) => {
-//     if (err) return next(err);
-//     res.redirect('/');
-//   });
-// });
+app.get('/log-out', (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    res.redirect('/');
+  });
+});
 
-// app.get('{*splat}', (_req, res) => {
-//   res.status(404);
-//   res.render('404');
-// });
+app.get('{*splat}', (_req, res) => {
+  res.status(404);
+  res.render('404');
+});
 
 export default app;
