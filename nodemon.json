@@ -1,6 +1,11 @@
 {
-  "watch": ["src"],
-  "ext": "ts",
+  "watch": ["src", "src/views", "src/public"],
+  "ext": "ts,js,ejs,css",
   "exec": "tsx",
-  "script": "src/server.ts"
+  "script": "src/server.ts",
+  "ignore": ["dist/**", "generated/**", "node_modules/**"],
+  "delay": "100",
+  "env": {
+    "NODE_ENV": "development"
+  }
 }
