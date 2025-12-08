@@ -98,7 +98,6 @@ html {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: linear-gradient(90deg, #eff6ff, #ffffff);
 }
 
 /* === ACTION SECTION */
@@ -109,8 +108,10 @@ html {
   justify-content: center;
   align-items: center;
   gap: var(--2);
+  background: linear-gradient(135deg, #eff6ff, #ffffff);
+  padding: var(--7);
 
-  padding-top: var(--5);
+  flex: 0.35;
 }
 
 #action header {
@@ -133,6 +134,7 @@ html {
   max-width: 250px;
   text-align: center;
   font-weight: 500;
+  font-size: 1.1rem;
 }
 
 #action p:nth-of-type(2) {
@@ -174,6 +176,58 @@ html {
   background-color: #fff;
   border: 2px solid rgb(196, 196, 196);
   transition: var(--slow);
+}
+
+#action p:last-of-type {
+  color: rgb(65, 65, 65);
+}
+
+/* === FEATURES SECTION */
+
+#features {
+  flex: 0.35;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: var(--7);
+
+  & header {
+    text-align: center;
+    padding-bottom: var(--7);
+
+    & h4 {
+      font-weight: 400;
+      font-size: var(--4);
+      padding-bottom: var(--1);
+    }
+  }
+}
+
+#feature-cont {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--6);
+  row-gap: var(--6);
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: var(--2);
+
+  & h6 {
+    font-size: var(--3);
+    font-weight: 400;
+  }
+
+  & p {
+    max-width: 340px;
+  }
 }
 
 /* === ERROR STYLING === */

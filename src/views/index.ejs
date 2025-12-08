@@ -18,12 +18,26 @@
             </div>
             <p>No credit card required • 10MB free storage per account</p>
         </section>
-        <!-- <section id="features">
+        <section id="features">
+            <header>
+                <h4>Everything You Need</h4>
+                <p>Built with modern web technologies for a seamless experience</p>
+            </header>
+            <div id="feature-cont">
+                <%- include('./partials/feature', {imgSrc: './assets/structure.svg', header: 'Smart Organization', content: 'Organize files into default folders (Documents, Images, GIFs, Other) or create custom folders'}) %>
+                <%- include('./partials/feature', {imgSrc: './assets/upload.svg', header: 'Easy Uploads', content: 'Drag and drop or click to upload files with real-time storage tracking and limits'}) %>
+                <%- include('./partials/feature', {imgSrc: './assets/users.svg', header: 'Shared Access', content: 'Access the public shared account with 100MB storage without registration'}) %>
+                <%- include('./partials/feature', {imgSrc: './assets/shield.svg', header: 'Secure Storage', content: 'Session-based authentication with Passport.js and cloud storage integration'}) %>
+                <%- include('./partials/feature', {imgSrc: './assets/bolt-2.svg', header: 'Grid & List Views', content: 'Switch between grid and list view modes for browsing your files'}) %>
+                <%- include('./partials/feature', {imgSrc: './assets/storage.svg', header: 'Storage Limits', content: '10MB for personal accounts, 100MB for the shared public account'}) %>
+            </div>
+        </section>
+        <section id="cta">
             <header>
                 <h4>Everything You Need</h4>
             </header>
             <p>Built with modern web technologies for a seamless experience</p>
-        </section> -->
+        </section>
     </main>
   </body>
 </html>
