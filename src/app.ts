@@ -11,6 +11,7 @@ import pool from './db/pool.js';
 
 import homePage from './routes/homePage.js';
 import signupPage from './routes/signupPage.js';
+import signinPage from './routes/signinPage.js';
 
 dotenv.config();
 
@@ -56,6 +57,7 @@ app.set('views', viewsPath);
 app.set('view engine', 'ejs');
 
 app.use('/signup', signupPage);
+app.use('/signin', signinPage);
 app.use('/', homePage);
 
 app.get('/log-out', (req, res, next) => {

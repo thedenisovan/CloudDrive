@@ -1,0 +1,40 @@
+<form method="POST" action="/signin" class="form">
+  <img src="assets/cloud.svg" aria-hidden="true" width="60">
+  <h4>Welcome to SilverCloud</h4>
+  <p class="form-card-p">Sign in to access your files</p>
+
+  <% if (errors.length) { %>
+    <%- include('error-container', {errors}) %>
+  <% } %>
+  <label for="user_email">Email</label>
+  <input
+    type="email"
+    name="email"
+    id="user_email"
+    required
+    placeholder="your@email.com"
+  />
+
+  <label for="user_password">Password</label>
+  <input
+    type="password"
+    name="pass"
+    id="user_password"
+    required
+    placeholder="******"
+    pattern="^(?=.*[A-Z])(?=.*\d){6,}$"
+  />
+
+  <div class="action-container">
+    <button class="action-button">Sign In</button>
+    <div id="or-cont">
+      <hr>
+      <p>Or</p>
+      <hr>
+    </div>
+    <a id="shared-anch" href="/shared"><button id="shared-btns" type="button"> Enter Shared Account (100mb Storage)</button></a>
+    <div class="call-to-action">
+      <p>no account? no problem! <a class="action-link" href="/signup">Sign Up</a></p>
+  </div>
+
+</form>

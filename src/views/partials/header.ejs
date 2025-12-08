@@ -7,11 +7,24 @@
       </div>
     </a>
     <ul id="right-header">
-      <li><a href="/signin">Sign In</a></li>
-      <li><a href="/signup">Sign Up</a></li>
-      <li>
-        <a href="/shared"><button>Shared Account</button></a>
-      </li>
+      <% if (page === 'Home Page') { %>
+        <li class="signin-li"><a href="/signin">Sign In</a></li>
+        <li class="signup-li"><a href="/signup">Sign Up</a></li>
+        <li class="shared-li">
+          <a href="/shared"><button>Shared Account</button></a>
+        </li>
+      <% } else if (page === 'Signup Page') { %>
+          <li class="signin-li"><a href="/signin">Sign In</a></li>
+        <li class="signnup-li">
+          <a  href="/shared"><button>Shared Account</button></a>
+        </li>
+      <% } else if (page === 'Signin Page') { %>
+          <li class="signup-li"><a href="/signup">Sign Up</a></li>
+        <li class="signnup-li">
+          <a  href="/shared"><button>Shared Account</button></a>
+        </li>
+      <% } %> %>
+
     </ul>
   </header>
 </div>
