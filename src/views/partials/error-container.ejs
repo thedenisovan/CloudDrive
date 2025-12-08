@@ -1,0 +1,10 @@
+<div class="error-container">
+  <h4>Please fix following errors:</h4>
+  <ul>
+    <% errors.forEach(err => { %>
+        <li>
+            <%= err.msg %>
+        </li>
+    <% }) %>
+  </ul>
+</div>

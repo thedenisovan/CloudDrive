@@ -10,6 +10,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import pool from './db/pool.js';
 
 import homePage from './routes/homePage.js';
+import signupPage from './routes/signupPage.js';
 
 dotenv.config();
 
@@ -54,6 +55,7 @@ app.use(passport.session());
 app.set('views', viewsPath);
 app.set('view engine', 'ejs');
 
+app.use('/signup', signupPage);
 app.use('/', homePage);
 
 app.get('/log-out', (req, res, next) => {

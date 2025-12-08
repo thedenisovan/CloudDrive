@@ -1,0 +1,64 @@
+<form method="POST" action="/signup" class="form">
+  <h4>Sign Up</h4>
+  <p class="form-card-p">Create your account to get started</p>
+
+  <% if (errors.length) { %>
+    <%- include('error-container', {errors}) %>
+  <% } %>
+  <div class="name-container">
+    <div class="name-group">
+      <label for="first_name">First Name</label>
+      <input
+        type="text"
+        id="first_name"
+        name="name"
+        required
+        placeholder="John"
+      />
+    </div>
+    <div class="name-group">
+      <label for="last_name">Last Name</label>
+      <input
+        type="text"
+        id="last_name"
+        name="surname"
+        required
+        placeholder="Doe"
+      />
+    </div>
+  </div>
+
+  <label for="user_email">Email</label>
+  <input
+    type="email"
+    name="email"
+    id="user_email"
+    required
+    placeholder="your@email.com"
+  />
+
+  <label for="user_password">Password</label>
+  <input
+    type="password"
+    name="pass"
+    id="user_password"
+    required
+    placeholder="6+ chars with uppercase and number."
+    pattern="^(?=.*[A-Z])(?=.*\d){6,}$"
+  />
+
+  <label for="password_confirmation">Confirm Password</label>
+  <input
+    type="password"
+    name="passwordConfirm"
+    id="password_confirmation"
+    required
+    placeholder="Confirm your password"
+  />
+
+  <div class="action-container">
+    <button class="action-button">Create Account</button>
+    <div class="call-to-action">
+      <p>already have an account? <a class="action-link" href="/signin">Sign in</a></p>
+  </div>
+</form>

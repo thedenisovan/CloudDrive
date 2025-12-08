@@ -29,6 +29,12 @@ html {
 
 /* === HEADER STYLING */
 
+#header-container {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
 #main-header {
   width: 100%;
   padding: var(--2) var(--6);
@@ -291,6 +297,109 @@ html {
 
 #cta-buttons a:last-of-type button:hover {
   background-color: #0a4fe2;
+}
+
+/* === SIGN UP PAGE === */
+
+#signup-page {
+  background: linear-gradient(135deg, #eff6ff, #ffffff);
+}
+
+/* === FORM STYLING === */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem auto;
+  padding: 2rem;
+  padding-top: 3rem;
+
+  background-color: #fff;
+  border-radius: 15px;
+  border: 1px solid rgb(202, 199, 199);
+  min-width: 300px;
+  max-width: 500px;
+
+  & h4 {
+    color: var(--blue-600);
+    font-weight: 300;
+    font-size: 1.3rem;
+  }
+
+  & input {
+    border: none;
+    background-color: var(--color-gray-200);
+    height: 2.3rem;
+    border-radius: 10px;
+    padding-left: 1rem;
+  }
+
+  & label {
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  & .action-button {
+    margin-top: 2rem;
+    color: white;
+    background-color: #030213;
+    border: none;
+    border-radius: 10px;
+    height: 2.3rem;
+    transition: all 0.1s;
+  }
+}
+
+.name-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.name-group {
+  display: flex;
+  flex-direction: column;
+
+  & input {
+    width: 100%;
+  }
+}
+
+.error-container {
+  color: #ac1818;
+  border: 1px solid #ce1f1f;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #ce1f1f13;
+  margin-top: 1rem;
+
+  & h4 {
+    color: #ce1f1f;
+  }
+}
+
+.call-to-action {
+  text-align: center;
+  margin: 1.8rem auto 0 auto;
+  color: rgb(88, 88, 88);
+
+  & a {
+    text-decoration: none;
+    color: var(--indigo-dark);
+  }
+}
+
+.action-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-button:hover {
+  background-color: #030213d3;
+  cursor: pointer;
+}
+
+.action-link:hover {
+  text-decoration: underline;
 }
 
 /* === ERROR STYLING === */
