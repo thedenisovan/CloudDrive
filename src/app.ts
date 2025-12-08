@@ -9,6 +9,8 @@ import { PrismaClient } from '../generated/prisma/client.js';
 import { PrismaPg } from '@prisma/adapter-pg';
 import pool from './db/pool.js';
 
+import homePage from './routes/homePage.js';
+
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
@@ -52,7 +54,7 @@ app.use(passport.session());
 app.set('views', viewsPath);
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => res.send('hi'));
+app.use('/', homePage);
 
 app.get('/log-out', (req, res, next) => {
   req.logout((err) => {
