@@ -4,7 +4,7 @@
   --blue-600-light: #155efbc5;
   --blue-600-lightest: oklch(93.4% 0.02822 251.541);
   --blue-100: #daeafe;
-  --color-gray-50: oklch(0.985 0.002 247.839);
+  --color-gray-50: #f5f5f5;
   --color-gray-200: oklch(96.744% 0.00143 285.225);
 
   --1: 0.5rem;
@@ -37,7 +37,7 @@ html {
   justify-content: space-between;
 
   & h1 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 400;
   }
 }
@@ -51,7 +51,7 @@ html {
 
 #right-header {
   list-style: none;
-  gap: var(--5);
+  gap: var(--4);
 
   & li {
     border-radius: var(--1);
@@ -62,6 +62,7 @@ html {
 #main-header a {
   text-decoration: none;
   color: black;
+  font-size: 1.3rem;
 }
 
 #right-header li:hover {
@@ -72,9 +73,11 @@ html {
   border: none;
   background-color: var(--blue-600);
   color: white;
-  height: var(--5);
+  height: var(--6);
   border-radius: var(--1);
   transition: var(--slow);
+  font-size: 1.3rem;
+  padding: 0.4rem 1rem;
 }
 
 #right-header button:hover {
@@ -85,7 +88,7 @@ html {
 #right-header li:first-of-type,
 #right-header li:nth-of-type(2) {
   height: var(--5);
-  width: 80px;
+  width: 100px;
 
   display: flex;
   align-items: center;
@@ -97,7 +100,7 @@ html {
 #home-page {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* height: 100vh; */
 }
 
 /* === ACTION SECTION */
@@ -110,8 +113,6 @@ html {
   gap: var(--2);
   background: linear-gradient(135deg, #eff6ff, #ffffff);
   padding: var(--7);
-
-  flex: 0.35;
 }
 
 #action header {
@@ -169,7 +170,7 @@ html {
 }
 
 #buttons a:last-of-type button:hover {
-  background-color: #ebebeb;
+  background-color: #f5f5f5;
 }
 
 #buttons a:last-of-type button {
@@ -185,7 +186,6 @@ html {
 /* === FEATURES SECTION */
 
 #features {
-  flex: 0.35;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -228,6 +228,69 @@ html {
   & p {
     max-width: 340px;
   }
+}
+
+/* === CTA STYLING === */
+
+#cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cta-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--4);
+
+  border: 1px solid;
+  width: clamp(500px, 62vw, 1050px);
+  height: 280px;
+  margin: 5rem;
+  border-radius: var(--4);
+  background: linear-gradient(90deg, var(--blue-600), var(--blue-600-light));
+  color: white;
+
+  & h4 {
+    font-size: var(--3);
+    font-weight: 400;
+  }
+
+  & p {
+    font-size: 1.3rem;
+  }
+}
+
+#cta-buttons button {
+  min-width: 120px;
+  padding: var(--2) var(--3);
+  border-radius: var(--2);
+  font-size: var(--3);
+  border: none;
+  cursor: pointer;
+  transition: var(--slow);
+}
+
+#cta-buttons a:first-of-type button {
+  background-color: white;
+  color: var(--blue-600);
+  margin-right: var(--1);
+}
+
+#cta-buttons a:first-of-type button:hover {
+  background-color: #f5f5f5;
+}
+
+#cta-buttons a:last-of-type button {
+  background-color: var(--blue-600-light);
+  color: white;
+  border: 3px solid white;
+}
+
+#cta-buttons a:last-of-type button:hover {
+  background-color: #0a4fe2;
 }
 
 /* === ERROR STYLING === */
