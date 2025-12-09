@@ -20,14 +20,15 @@ const signupValidator = [
 
       if (user) throw new Error('E-mail all ready in use.');
     }),
-  body('pass')
+  body('password')
     .trim()
     .matches(/^(?=.*[A-Z])(?=.*\d).{6,}$/)
     .withMessage('Password must be 6+ chars with uppercase and number.'),
-  body('passConfirm')
+  body('passwordConfirm')
     .trim()
     .custom(async (value, { req }) => {
-      if (value !== req.body.pass) throw new Error('Passwords did not match.');
+      if (value !== req.body.password)
+        throw new Error('Passwords did not match.');
     }),
 ];
 

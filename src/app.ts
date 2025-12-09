@@ -3,9 +3,8 @@ import session from 'express-session';
 import passport from 'passport';
 import path from 'path';
 import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
-import { PrismaClient } from '../generated/prisma/client';
+import { PrismaClient } from '../generated/prisma/client.js';
 import { PrismaPg } from '@prisma/adapter-pg';
 import pool from './db/pool.js';
 
@@ -15,9 +14,6 @@ import signinPage from './routes/signinPage.js';
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
-const __dirname = path.dirname(__filename); // get the name of the directory
-
 // adapter so i can use neon dp in my prisma project
 const adapter = new PrismaPg(pool);
 
@@ -25,8 +21,8 @@ const app = express();
 const SECRET = process.env.NOT_FOR_YOU as string;
 
 // Paths
-const assetsPath = path.join(__dirname, 'public');
-const viewsPath = path.join(__dirname, 'views');
+const assetsPath = path.join(import.meta.dirname, 'public');
+const viewsPath = path.join(import.meta.dirname, 'views');
 
 // Middleware
 app.use(express.static(assetsPath));

@@ -21,18 +21,20 @@ model Session {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
   name     String
   surname  String
   password String
+  folders  Folder[]
 }
 
 model Folder {
   id     Int    @id @default(autoincrement())
   name   String @unique
-  userId Int
   fileId File[]
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
 }
 
 model File {

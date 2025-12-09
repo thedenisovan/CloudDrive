@@ -371,7 +371,7 @@ html {
 
 .name-container {
   display: flex;
-  gap: 3rem;
+  gap: 1rem;
 }
 
 .name-group {
