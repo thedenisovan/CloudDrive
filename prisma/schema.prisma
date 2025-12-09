@@ -24,14 +24,20 @@ model User {
   id       Int    @id @default(autoincrement())
   email    String @unique
   name     String
+  surname  String
   password String
 }
 
 model Folder {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id     Int    @id @default(autoincrement())
+  name   String @unique
+  userId Int
+  fileId File[]
 }
 
 model File {
-  id Int @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
+  data     Bytes
+  folder   Folder @relation(fields: [folderId], references: [id])
+  folderId Int
 }
