@@ -33,12 +33,12 @@ html {
   position: sticky;
   top: 0;
   background-color: rgba(255, 255, 255, 0.985);
+  border-bottom: solid var(--color-gray-200);
 }
 
 #main-header {
   width: 100%;
   padding: var(--2) var(--6);
-  border-bottom: solid var(--color-gray-200);
   max-width: 1460px;
   margin: auto;
 

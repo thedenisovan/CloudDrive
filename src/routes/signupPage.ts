@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import signupValidator from '../validators/signup.validator';
+import signupValidator from '../validators/signup.validator.js';
 import signupUser from '../controllers/signupUser.js';
 
 const signupPage = Router();

@@ -11,6 +11,7 @@ import pool from './db/pool.js';
 import homePage from './routes/homePage.js';
 import signupPage from './routes/signupPage.js';
 import signinPage from './routes/signinPage.js';
+import './controllers/signinUser.js'; // import local strategy controller
 
 dotenv.config();
 
