@@ -11,19 +11,23 @@
         <li class="signin-li"><a href="/signin">Sign In</a></li>
         <li class="signup-li"><a href="/signup">Sign Up</a></li>
         <li class="shared-li">
-          <a href="/shared"><button>Shared Account</button></a>
+          <%- include('./sharedAccessForm') %>
         </li>
       <% } else if (page === 'Signup Page') { %>
           <li class="signin-li"><a href="/signin">Sign In</a></li>
         <li class="shared-li">
-          <a  href="/shared"><button>Shared Account</button></a>
+         <%- include('./sharedAccessForm') %>
         </li>
       <% } else if (page === 'Signin Page') { %>
           <li class="signup-li"><a href="/signup">Sign Up</a></li>
         <li class="shared-li">
-          <a  href="/shared"><button>Shared Account</button></a>
+          <%- include('./sharedAccessForm') %>
         </li>
-      <% } %> %>
+      <% } else if (page === 'Storage Page') { %>
+        <li class="signout-li">
+          <a  href="/log-out"><button>Sign Out</button></a>
+        </li>
+      <% } %>
 
     </ul>
   </header>
