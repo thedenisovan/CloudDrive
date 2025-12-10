@@ -50,6 +50,34 @@ html {
   }
 }
 
+#left-header {
+  position: relative;
+
+  & img {
+    position: relative;
+    top: 8px;
+  }
+}
+
+#left-header div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#left-header div h2 {
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: var(--blue-600);
+  height: 15px;
+}
+
+#left-header div h1 {
+  height: 20px;
+  font-weight: 300;
+  font-size: 1.4rem;
+}
+
 #main-header,
 #left-header,
 #right-header {

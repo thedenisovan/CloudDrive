@@ -1,9 +1,23 @@
 <div id="header-container">
   <header id="main-header">
-    <a href="/">
+    <a href="
+     <% if (page === 'Storage Page') { %>
+           
+          <% } else { %>
+            /
+          <% } %>
+    ">
       <div id="left-header">
         <img src="./assets/cloud.svg" aria-hidden="true" width="40" id="logo"/>
-        <h1 aria-label="Webpage title header" tabindex="0">SilverCloud</h1>
+        <div>
+          <h1 aria-label="Webpage title header" tabindex="0">SilverCloud</h1>
+          <% if (page === 'Storage Page') { %>
+            <h2>
+              <%= user.name %>
+              <%= user.surname %>
+            </h2>
+          <% } %>
+        </div>
       </div>
     </a>
     <ul id="right-header">

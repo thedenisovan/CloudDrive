@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import signinValidator from '../validators/signin.validator.js';
-import validatorMiddleware from '../validators/signin.validatorResult.js';
+import validatorMiddleware from '../controllers/signin.validatorResult.js';
 import passport from 'passport';
 
 const signinPage = Router();

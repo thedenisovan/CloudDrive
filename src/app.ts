@@ -12,7 +12,7 @@ import homePage from './routes/homePage.js';
 import signupPage from './routes/signupPage.js';
 import signinPage from './routes/signinPage.js';
 import storagePage from './routes/storagePage.js';
-import './controllers/signinUser.js'; // import local strategy controller
+import './auth/signinUser.js'; // import local strategy controller
 
 dotenv.config();
 
