@@ -12,7 +12,7 @@ export default async function signupUser(req: Request, res: Response) {
     if (result.isEmpty()) {
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      await prisma.user.create({
+      const user = await prisma.user.create({
         data: {
           email,
           name,
@@ -20,6 +20,22 @@ export default async function signupUser(req: Request, res: Response) {
           password: hashedPassword,
         },
       });
+
+      await prisma.profile.create({
+        data: {
+          userId: user.id,
+          folders: {
+            create: [
+              { name: 'Documents' },
+              { name: 'Pictures' },
+              { name: 'Gif' },
+              { name: 'Videos' },
+              { name: 'Other' },
+            ],
+          },
+        },
+      });
+
       return res.status(200).redirect('/signin');
     }
     return res.status(400).render('signup', {
