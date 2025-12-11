@@ -344,14 +344,12 @@ html {
 .form {
   display: flex;
   flex-direction: column;
-  margin: 3rem auto;
-  padding: 2rem;
-  padding-top: 3rem;
+  margin: 1rem auto;
 
   background-color: #fff;
-  border-radius: 15px;
-  min-width: 400px;
+  min-width: 330px;
   max-width: 600px;
+  padding: 0rem 2.4rem 0rem 1.5rem;
 
   & img {
     margin: auto;
