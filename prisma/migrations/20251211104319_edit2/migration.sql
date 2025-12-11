@@ -1,0 +1,5 @@
+-- DropIndex
+DROP INDEX "Folder_name_key";
+
+-- AlterTable
+ALTER TABLE "File" ADD COLUMN     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;

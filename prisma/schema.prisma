@@ -29,6 +29,7 @@ model User {
   profile  Profile?
 }
 
+// Model representing user/folder relationship
 model Profile {
   id          Int      @id @default(autoincrement())
   folders     Folder[]
@@ -46,9 +47,10 @@ model Folder {
 }
 
 model File {
-  id       Int    @id @default(autoincrement())
-  data     String
-  name     String
-  folder   Folder @relation(fields: [folderId], references: [id])
-  folderId Int
+  id        Int      @id @default(autoincrement())
+  data      String
+  name      String
+  folder    Folder   @relation(fields: [folderId], references: [id])
+  folderId  Int
+  createdAt DateTime @default(now())
 }

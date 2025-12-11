@@ -27,6 +27,10 @@ html {
   width: 100%;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* === HEADER STYLING */
 
 #header-container {
@@ -310,6 +314,7 @@ html {
   & p {
     font-size: 1.3rem;
     text-align: center;
+    padding: 0px;
   }
 }
 
@@ -506,7 +511,7 @@ html {
   align-items: center;
 
   & p {
-    margin: 1.4rem 1rem 0rem 1rem;
+    margin: 1rem 1rem 0rem 1rem;
     color: rgb(97, 97, 97);
   }
 
@@ -538,6 +543,85 @@ html {
 #shared-btns:hover {
   cursor: pointer;
   background: linear-gradient(90deg, #12873d, #0c857b);
+}
+
+/* SORTING SECTION OF THE DOCUMENT */
+
+#select-form {
+  width: clamp(200px, 70vw, 700px);
+}
+
+#select-form select {
+  border-radius: 0.4rem;
+  background-color: white;
+  height: var(--6);
+  width: 100% !important;
+
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#storage-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  padding: 0.5rem;
+  gap: 0.6rem;
+}
+
+#new-folder:hover,
+.inactive:hover {
+  background-color: gray;
+}
+
+.active {
+  background-color: white;
+  box-shadow: 0 0 2px black;
+}
+
+#new-folder {
+  height: 2.6rem !important;
+  width: 2.6rem !important;
+}
+
+#new-folder,
+#view-container button {
+  border: none;
+  border-radius: 0.4rem;
+  height: 2rem;
+  width: 2rem;
+  transition: var(--slow);
+}
+
+#new-folder img,
+#view-container button img {
+  width: 2rem;
+}
+
+#view-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-gray-50);
+  padding: 0.2rem;
+  border-radius: 0.4rem;
+  gap: 1px;
+}
+
+#upload-btn {
+  background-color: var(--blue-600);
+  color: white;
+  border: none;
+  padding: var(--1);
+  border-radius: var(--1);
+  transition: var(--slow);
+}
+
+#upload-btn:hover {
+  background-color: var(--blue-10);
 }
 
 /* 1. Use a more-intuitive box-sizing model */

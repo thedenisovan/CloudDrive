@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import signinValidator from '../validators/signin.validator.js';
-import validatorMiddleware from '../controllers/signin.validatorResult.js';
+import validatorMiddleware from '../middleware/signin.validatorResult.js';
 import passport from 'passport';
 
 const signinPage = Router();
@@ -11,7 +11,7 @@ signinPage.post(
   signinValidator,
   validatorMiddleware,
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/storage',
     failureRedirect: '/',
     failureMessage: true,
   })

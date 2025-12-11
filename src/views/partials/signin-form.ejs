@@ -27,14 +27,31 @@
 
   <div class="action-container">
     <button class="action-button">Sign In</button>
-    <div id="or-cont">
-      <hr>
-      <p>Or</p>
-      <hr>
-    </div>
-    <a id="shared-anch" href="/storage"><button id="shared-btns" type="button"> Enter Shared Account (100mb Storage)</button></a>
     <div class="call-to-action">
       <p>no account? no problem! <a class="action-link" href="/signup">Sign Up</a></p>
   </div>
 
 </form>
+
+<div id="or-cont">
+  <hr>
+    <p>Or</p>
+  <hr>
+</div>
+<a id="shared-anch" href="/storage">
+  <form action="/signin" method="post">
+    <input
+      style="display: none"
+      type="text"
+      name="username"
+      value="shared@account.com"
+    />
+    <input
+      style="display: none"
+      type="text"
+      name="password"
+      value="Shared123"
+    />
+    <button id="shared-btns"> Enter Shared Account (100mb Storage)</button>
+  </form>
+</a>

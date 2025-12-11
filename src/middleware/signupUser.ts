@@ -26,10 +26,10 @@ export default async function signupUser(req: Request, res: Response) {
           userId: user.id,
           folders: {
             create: [
+              { name: 'All Files' },
               { name: 'Documents' },
-              { name: 'Pictures' },
+              { name: 'Images' },
               { name: 'Gif' },
-              { name: 'Videos' },
               { name: 'Other' },
             ],
           },
