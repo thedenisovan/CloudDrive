@@ -369,7 +369,6 @@ button {
 
   & p {
     text-align: center;
-    padding-bottom: var(--3);
     font-size: var(--3);
     font-weight: 300;
   }
@@ -511,7 +510,7 @@ button {
   align-items: center;
 
   & p {
-    margin: 1rem 1rem 0rem 1rem;
+    margin: 1rem;
     color: rgb(97, 97, 97);
   }
 
@@ -538,6 +537,7 @@ button {
   height: var(--6);
   font-size: 1.1rem;
   transition: var(--slow);
+  /* margin-top: 1rem; */
 }
 
 #shared-btns:hover {
