@@ -5,9 +5,9 @@
     <%- include('./partials/header', {page: 'Storage Page'}) %>
     <header id="storage-header">
       <form id="select-form" action="/storage" method="post">
-        <select onchange="submit()">
+        <select name="folders" onchange="submit()">
         <% folders.map((folder) => { %>
-            <option name="<%= folder.name %>" value="<%= folder.name %>">
+            <option value="<%= folder.name %>">
               <%= folder.name %>
             </option>
         <% }) %>
@@ -18,7 +18,7 @@
         <button id="grid" class="grid active"><img  src="./assets/grid.svg" ></button>
         <button class="list inactive"><img src="./assets/list.svg" ></button>
       </div>
-      <button id="upload-btn" style="display: flex; align-items: center;"><img src="./assets/upload-1.svg" aria-hidden="true" width="25"><p style="font-size: 1.1rem;">Upload</p></button>
+      <a href="/upload"><button id="upload-btn" style="display: flex; align-items: center;"><img src="./assets/upload-1.svg" aria-hidden="true" width="25"><p style="font-size: 1.1rem;">Upload</p></button></a>
     </header>
     <%- include('./partials/new-folder-form.ejs') %>
   </body>

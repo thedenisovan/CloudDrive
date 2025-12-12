@@ -12,6 +12,7 @@ import homePage from './routes/homePage.js';
 import signupPage from './routes/signupPage.js';
 import signinPage from './routes/signinPage.js';
 import storagePage from './routes/storagePage.js';
+import uploadPage from './routes/uploadPage.js';
 import './auth/signinUser.js'; // import local strategy controller
 
 dotenv.config();
@@ -57,6 +58,7 @@ app.set('view engine', 'ejs');
 app.use('/signup', signupPage);
 app.use('/signin', signinPage);
 app.use('/storage', storagePage);
+app.use('/upload', uploadPage);
 app.use('/', homePage);
 
 app.get('/log-out', (req, res, next) => {
