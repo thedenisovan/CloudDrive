@@ -1,6 +1,7 @@
 import { prisma } from '../lib/prisma.js';
 import { Request, Response, NextFunction } from 'express-serve-static-core';
 
+// get all folder what are available for current user
 export default async function getFolders(
   req: Request,
   res: Response,

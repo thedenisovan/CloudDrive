@@ -7,16 +7,25 @@
     <%- include('./partials/shared', {page: 'Storage Page'}) %>
   </head>
   <body style="display: flex; align-items: center; justify-content: center; background-color: black;">
-    <form style="padding: 1.3rem; border-radius: .5rem; width: clamp(350px, 60vw, 700px); height: clamp(540px, 70vh, 900px); background-color: white;" action="/upload" method="post">
+    <form style="padding: 1.3rem; border-radius: .5rem; width: clamp(350px, 60vw, 700px); height: clamp(540px, 70vh, 900px); background-color: white;" action="/upload" method="post" enctype="multipart/form-data">
       <div style="margin: .7rem 0; display: flex; justify-content: space-between; align-items: center;">
         <h2 style="font-weight: 300; font-size: 1.4rem;">Upload Files</h2>
         <a href="/storage" style="text-decoration: none; color: gray; font-size: 1.3rem;">X</a>
       </div>
       <hr>
       <label for="select-folder">Select Folder</label>
-      <select name="folder" id="select-folder">
-        <option value="test">Test</option>
+      <select name="folder" id="select-folder" required>
+        <% folders.map((folder, idx) => { %>
+          <% if (idx !== 0) { %>
+            <option value="<%= folder.name %>">
+              <%= folder.name %>
+            </option>
+          <% } %>
+        <% }) %>
       </select>
+
+      <input type="file" name="file" required>
+      <button>Submit</button>
     </form>
   </body>
 </html>
