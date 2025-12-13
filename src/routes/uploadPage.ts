@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import getFolders from '../middleware/getFolders';
-import upload from '../middleware/multerConfig';
+import getFolders from '../middleware/getFolders.js';
+import upload from '../middleware/multerConfig.js';
 
 const uploadPage = Router();
 

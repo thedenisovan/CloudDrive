@@ -13,21 +13,23 @@
         <a href="/storage" style="text-decoration: none; color: gray; font-size: 1.3rem;">X</a>
       </div>
       <hr>
-      <label for="select-folder">Select Folder</label>
-      <select name="folder" id="select-folder" required>
-        <% folders.map((folder, idx) => { %>
-          <% if (idx !== 0 && idx !== 1) { %>
-            <option value="<%= folder.name %>">
-              <%= folder.name %>
-            </option>
-          <% } %>
-          <% if (idx === 1) { %>
-            <option selected value="<%= folder.name %>">
-              <%= folder.name %>
-            </option>
-          <% } %>
-        <% }) %>
-      </select>
+      <div class="flex-col">
+        <label style="margin: 1rem 0" for="select-folder">Select Folder</label>
+        <select style="background-color: white; height: 3rem; border-radius: .3rem;" name="folder" id="select-folder" required>
+          <% folders.map((folder, idx) => { %>
+            <% if (idx !== 0 && idx !== 1) { %>
+              <option value="<%= folder.name %>">
+                <%= folder.name %>
+              </option>
+            <% } %>
+            <% if (idx === 1) { %>
+              <option selected value="<%= folder.name %>">
+                <%= folder.name %>
+              </option>
+            <% } %>
+          <% }) %>
+        </select>
+      </div>
 
       <div>
         <div>Accepted: <span id="accepted-files"></span></div>

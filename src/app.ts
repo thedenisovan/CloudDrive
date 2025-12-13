@@ -4,9 +4,7 @@ import passport from 'passport';
 import path from 'path';
 import dotenv from 'dotenv';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
-import { PrismaClient } from '../generated/prisma/client.js';
-import { PrismaPg } from '@prisma/adapter-pg';
-import pool from './db/pool.js';
+import { prisma } from './lib/prisma.js';
 
 import homePage from './routes/homePage.js';
 import signupPage from './routes/signupPage.js';
@@ -17,18 +15,11 @@ import './auth/signinUser.js'; // import local strategy controller
 
 dotenv.config();
 
-// adapter so i can use neon dp in my prisma project
-const adapter = new PrismaPg(pool);
-
 const app = express();
 const SECRET = process.env.NOT_FOR_YOU as string;
 
-// Paths
-const assetsPath = path.join(import.meta.dirname, 'public');
-const viewsPath = path.join(import.meta.dirname, 'views');
-
 // Middleware
-app.use(express.static(assetsPath));
+app.use(express.static(path.join(import.meta.dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -40,7 +31,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 2, // 2 days
     },
-    store: new PrismaSessionStore(new PrismaClient({ adapter }), {
+    store: new PrismaSessionStore(prisma, {
       checkPeriod: 2 * 60 * 1000, //ms
       dbRecordIdIsSessionId: true,
       dbRecordIdFunction: undefined,
@@ -52,7 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // View engine
-app.set('views', viewsPath);
+app.set('views', path.join(import.meta.dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use('/signup', signupPage);

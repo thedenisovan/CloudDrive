@@ -1,16 +1,18 @@
 import multer from 'multer';
+let idx = 0;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
+    console.log(req.body.folder);
     cb(null, './src/uploads');
   },
   filename: function (req, file, cb) {
     const parts = file.originalname.split('.');
-    const extension = parts[parts.length - 1];
 
-    const uniqueSuffix =
-      Date.now() + '-' + Math.round(Math.random() * 1e9) + '.' + extension;
-    cb(null, file.fieldname + '-' + uniqueSuffix);
+    const uniqueSuffix = parts[0]! + '|' + idx + '.' + parts[parts.length - 1];
+    cb(null, uniqueSuffix);
+
+    idx++;
   },
 });
 
