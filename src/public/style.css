@@ -615,6 +615,7 @@ button {
   height: var(--6);
   font-size: 1.1rem;
   transition: var(--slow);
+  padding: 1.5rem 0px !important;
   /* margin-top: 1rem; */
 }
 
@@ -648,7 +649,7 @@ button {
   flex-wrap: wrap;
   align-items: center;
 
-  padding: 0.5rem;
+  padding: var(--2);
   gap: 0.6rem;
 }
 
@@ -720,10 +721,6 @@ button {
     border-radius: var(--1);
   }
 
-  & button {
-    /* height: var(--3); */
-  }
-
   & div {
     display: flex;
     gap: var(--1);
@@ -738,6 +735,22 @@ button {
 #new-folder-form div button {
   border-radius: var(--1);
   border: none;
+}
+
+/* MAIN CONTENT MAIN */
+
+#storage-page {
+  display: flex;
+  flex-direction: column;
+}
+
+#main-main {
+  padding: var(--2);
+  flex: 1;
+
+  & h2 {
+    font-weight: 300;
+  }
 }
 
 /* Extra small devices (phones, 600px and down) */
