@@ -22,44 +22,5 @@
     </header>
     <%- include('./partials/new-folder-form.ejs') %>
   </body>
+  <%- include('./partials/scripts/storageDom') %>
 </html>
-
-<script>
-  const form = document.getElementById('new-folder-form');
-  const gridBtn = document.querySelector('.grid');
-  const listBtn = document.querySelector('.list');
-
-  document.getElementById('new-folder')
-    .addEventListener('click', () => {
-    form.classList.toggle('hidden');
-  })
-
-  document.getElementById('cancel-folder')
-    .addEventListener('click', (e) => {
-      e.preventDefault();
-      form.classList.add('hidden');
-    })
-
-    function handleClick(e) {
-      const target = e.target.closest('button');
-
-      if (target.classList.contains('grid')) {
-        listBtn.classList.remove('active');
-        listBtn.classList.add('inactive');
-        target.classList.remove('inactive');
-        target.classList.add('active');
-      } else if (target.classList.contains('list')) {
-        gridBtn.classList.remove('active');
-        gridBtn.classList.add('inactive');
-        target.classList.remove('inactive');
-        target.classList.add('active');
-      }
-    }
-
-
-
-    gridBtn.addEventListener('click', handleClick)
-
-    listBtn.addEventListener('click', handleClick)
-  
-</script>

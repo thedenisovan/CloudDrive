@@ -1,0 +1,33 @@
+<script>
+  const selectFolder = document.getElementById('select-folder');
+  const accepted = document.getElementById('accepted-files');
+  const file = document.getElementById('file');
+
+  accepted.textContent = 'PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT';
+
+  selectFolder.addEventListener('change', () => {
+    if (selectFolder.value === 'Gif') {
+      accepted.textContent = 'GIF';
+      file.setAttribute('accept', '.gif');
+    } else if (selectFolder.value === 'Documents') {
+      accepted.textContent = 'PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT';
+      file.setAttribute(
+        'accept',
+        '.pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt'
+      );
+    } else if (selectFolder.value === 'Images') {
+      accepted.textContent = 'JPG, PNG, WEBP';
+      file.setAttribute('accept', '.jpg, .png, .webp');
+    } else if (selectFolder.value === 'Other') {
+      accepted.textContent = 'ZIP, RAR, MP4, MP3, WAV';
+      file.setAttribute('accept', '.zip, .rar, .mp4, .mp3, .wav');
+    } else {
+      selectFolder.style.display = 'none';
+      file.removeAttribute('accept');
+    }
+  });
+
+  file.addEventListener('change', () =>
+    console.log(Number.parseFloat(file.files[0].size / 1024).toFixed(2))
+  );
+</script>
