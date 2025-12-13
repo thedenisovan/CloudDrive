@@ -20,21 +20,25 @@ storagePage.get('/', getFolders, async (req, res) => {
 });
 
 storagePage.post('/', async (req, res) => {
-  res.redirect('storage');
+  const { action } = req.body;
   let profileId = null;
 
-  if (req.user) {
-    profileId = await prisma.profile.findUnique({
-      where: { userId: req.user.id },
-      select: { id: true },
-    });
+  if (action === 'create') {
+    if (req.user) {
+      profileId = await prisma.profile.findUnique({
+        where: { userId: req.user.id },
+        select: { id: true },
+      });
+    }
+
+    if (profileId && req.user) {
+      await prisma.folder.create({
+        data: { name: req.body.folderName, profileId: profileId.id },
+      });
+    }
   }
 
-  if (profileId && req.user) {
-    await prisma.folder.create({
-      data: { name: req.body.folderName, profileId: profileId.id },
-    });
-  }
+  res.redirect('storage');
 });
 
 export default storagePage;

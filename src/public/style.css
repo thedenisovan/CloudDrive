@@ -625,7 +625,6 @@ button {
 }
 
 /* SORTING SECTION OF THE DOCUMENT */
-
 #select-form {
   width: clamp(200px, 80vw, 580px);
 }
@@ -663,7 +662,12 @@ button {
   box-shadow: 0 0 2px black;
 }
 
-#new-folder {
+#del-folder:hover {
+  background-color: #9a0000;
+}
+
+#new-folder,
+#del-folder {
   height: 2.6rem !important;
   width: 2.6rem !important;
 }
@@ -677,8 +681,18 @@ button {
   transition: var(--slow);
 }
 
+#del-folder {
+  border: none;
+  border-radius: 0.4rem;
+  height: 2rem;
+  width: 2rem;
+  transition: var(--slow);
+}
+
 #new-folder img,
-#view-container button img {
+#view-container button img,
+#del-folder,
+#del-folder img {
   width: 2rem;
 }
 

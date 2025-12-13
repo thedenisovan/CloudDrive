@@ -3,7 +3,6 @@ let idx = 0;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log(req.body.folder);
     cb(null, './src/uploads');
   },
   filename: function (req, file, cb) {
