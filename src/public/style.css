@@ -767,6 +767,19 @@ button {
   }
 }
 
+/* NAV BAR */
+
+#nav-ul button {
+  width: 100%;
+  text-align: start;
+  background-color: white;
+  border: none;
+}
+
+#nav-ul {
+  list-style: none;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 768px) {
   #home-page section {
@@ -860,6 +873,11 @@ button {
 
   #storage-header {
     justify-content: end;
+  }
+
+  #nav-bar {
+    display: flex !important;
+    flex-direction: column;
   }
 }
 

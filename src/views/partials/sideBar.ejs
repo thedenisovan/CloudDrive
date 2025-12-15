@@ -1,10 +1,28 @@
-<section>
-    <ul>
-        <% folders.forEach(folder => { %>
-            <li>
-                <%= folder.name %>
-                <input type="hidden" name="<%= folder.name %>" value="<%= folder.name %>">
+<nav id="nav-bar" style="display:none; border: 1px solid;">
+    <ul id="nav-ul">
+        <% folders.forEach((folder, idx) => { %>
+            <% if (idx === 1) { %>
+                <h4>Folders</h4>
+                <li id="folder-<%= idx %>">
+                <form action="/storage" method="get">
+                    <button><%= folder.name %></button>
+                    <input type="hidden" name="folders" value="<%= folder.name %>">
+                </form>
+                </li>
+            <% } else { %>
+            <li id="folder-<%= idx %>">
+            <form action="/storage" method="get">
+                <button><%= folder.name %></button>
+                <input type="hidden" name="folders" value="<%= folder.name %>">
+            </form>
             </li>
+            <% } %>
         <% }) %>
+        <li>
+            <form action="/storage" method="post">
+                <input type="hidden" name="action" value="create" />
+                <input type="text" name="folderName" placeholder="Folder name">
+            </form>
+        </li>
     </ul>
-</section>
+</nav>
