@@ -1,5 +1,5 @@
-<nav id="nav-bar" style="display:none; border: 1px solid;">
-    <ul id="nav-ul">
+<aside id="nav-bar" style="display:none; ">
+    <ul id="nav-ul" class="flex-col">
         <% folders.forEach((folder, idx) => { %>
             <% if (idx === 1) { %>
                 <h4>Folders</h4>
@@ -21,8 +21,8 @@
         <li>
             <form action="/storage" method="post">
                 <input type="hidden" name="action" value="create" />
-                <input type="text" name="folderName" placeholder="Folder name">
+                <input id="new-folder-input" type="text" name="folderName" placeholder="Folder name">
             </form>
         </li>
     </ul>
-</nav>
+</aside>

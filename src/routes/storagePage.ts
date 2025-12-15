@@ -7,6 +7,7 @@ import folderValidMw from '../middleware/folder.validResults.js';
 const storagePage = Router();
 
 storagePage.get('/', getFolders, async (req, res) => {
+  console.log(req.query.folders);
   res.render('storage', {
     user: req.user,
     folders: req.folders,
