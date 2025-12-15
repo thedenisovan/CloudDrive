@@ -844,6 +844,23 @@ button {
     column-gap: var(--7);
     row-gap: var(--7);
   }
+
+  #new-folder {
+    display: none;
+  }
+
+  #storage-header select {
+    display: none;
+  }
+
+  #main-header {
+    max-width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  #storage-header {
+    justify-content: end;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

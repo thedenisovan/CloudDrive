@@ -1,0 +1,10 @@
+<section>
+    <ul>
+        <% folders.forEach(folder => { %>
+            <li>
+                <%= folder.name %>
+                <input type="hidden" name="<%= folder.name %>" value="<%= folder.name %>">
+            </li>
+        <% }) %>
+    </ul>
+</section>
