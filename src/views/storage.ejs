@@ -14,9 +14,13 @@
         <% }) %>
         </select>
       </form>
-      <form action="/storage" method="post">
-        <button style="background-color: #ffe0e0;" id="del-folder"><img src="/assets/del.svg" alt="create new folder" aria-label="create new folder"></button>
-      </form>
+      <% if (selectedFolder !== 'All Files' && selectedFolder !== 'Documents' && selectedFolder !== 'Other' && selectedFolder !== 'Gif' && selectedFolder !== 'Images') { %>
+        <form action="/storage" method="post">
+          <input type="hidden" name="action" value="delete" />
+          <input type="hidden" name="selectedFolder" value="<%= selectedFolder %>" />
+          <button style="background-color: #ffe0e0;" id="del-folder"><img src="/assets/del.svg" alt="create new folder" aria-label="create new folder"></button>
+        </form>
+      <% } %>
       <button id="new-folder"><img src="/assets/add.svg" alt="create new folder" aria-label="create new folder"></button>
       <div id="view-container">
         <button id="grid" class="grid active"><img  src="/assets/grid.svg" ></button>
@@ -27,7 +31,7 @@
     <%- include('./partials/new-folder-form.ejs') %>
     <main id="main-main">
       <h2>
-      <%= (selectedFolder || folders[0].name) %>
+      <%= (selectedFolder) %>
       </h2>
     </main>
     <%- include('./partials/footer') %>
