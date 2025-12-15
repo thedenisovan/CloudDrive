@@ -6,7 +6,7 @@
     <header id="storage-header">
       <form id="select-form" action="/storage" method="get">
         <select name="folders" onchange="this.form.submit()">
-        <% folders.forEach(folder => { %>
+        <% folders.forEach((folder, idx) => { %>
             <option value="<%= folder.name %>" 
                 <%= folder.name === (selectedFolder || folders[0].name) ? 'selected' : '' %>>
                 <%= folder.name %>
@@ -20,6 +20,8 @@
           <input type="hidden" name="selectedFolder" value="<%= selectedFolder %>" />
           <button style="background-color: #ffe0e0;" id="del-folder"><img src="/assets/del.svg" alt="create new folder" aria-label="create new folder"></button>
         </form>
+        <h1>
+        </h1>
       <% } %>
       <button id="new-folder"><img src="/assets/add.svg" alt="create new folder" aria-label="create new folder"></button>
       <div id="view-container">
