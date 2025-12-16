@@ -2,10 +2,13 @@
   const selectFolder = document.getElementById('select-folder');
   const accepted = document.getElementById('accepted-files');
   const file = document.getElementById('file');
+  const acceptedContainer = document.getElementById('accepted');
 
   accepted.textContent = 'PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT';
 
   selectFolder.addEventListener('change', () => {
+    accepted.style.display = 'inline';
+    acceptedContainer.style.display = 'inline';
     if (selectFolder.value === 'Gif') {
       accepted.textContent = 'GIF';
       file.setAttribute('accept', '.gif');
@@ -22,7 +25,8 @@
       accepted.textContent = 'ZIP, RAR, MP4, MP3, WAV';
       file.setAttribute('accept', '.zip, .rar, .mp4, .mp3, .wav');
     } else {
-      selectFolder.style.display = 'none';
+      accepted.style.display = 'none';
+      acceptedContainer.style.display = 'none';
       file.removeAttribute('accept');
     }
   });

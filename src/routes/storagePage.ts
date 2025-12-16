@@ -7,11 +7,12 @@ import folderValidMw from '../middleware/folder.validResults.js';
 const storagePage = Router();
 
 storagePage.get('/', getFolders, async (req, res) => {
-  console.log(req.query.folders);
   res.render('storage', {
     user: req.user,
     folders: req.folders,
-    selectedFolder: req.query.folders || 'All Files',
+    // sif new folder is created or active one deleted set curr folder to last in folders list
+    selectedFolder:
+      req.query.folders || req.folders[req.folders.length - 1].name,
   });
 });
 
