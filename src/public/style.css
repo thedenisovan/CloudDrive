@@ -759,6 +759,10 @@ button {
   flex-direction: column;
 }
 
+#storage-page section {
+  background: #fcfcfc;
+}
+
 #main-main {
   padding: var(--2);
   flex: 1;
@@ -775,7 +779,7 @@ aside {
 }
 
 #nav-bar {
-  width: 256px;
+  width: 300px;
   padding: 16px;
 }
 

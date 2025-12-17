@@ -2,13 +2,21 @@
     <ul id="nav-ul" class="flex-col">
         <% folders.forEach((folder, idx) => { %>
             <% if (idx === 1) { %>
-                <h4 style="font-size: 1.4rem;margin-top: 1rem; margin-left: 28px; font-weight: 300; color: #2d3542;">Folders</h4>
+                <h4 style="font-size: 1.4rem;margin-top: 1rem; margin-left: 16px; font-weight: 300; color: #2d3542;">Folders</h4>
                 <li id="folder-<%= idx %>">
                 <form action="/storage" method="get">
                     <button class="folder-btn" style="font-weight: 300;display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
                     <input type="hidden" name="folders" value="<%= folder.name %>">
                 </form>
                 </li>
+            <% } else if (idx === 4) { %>
+            <li id="folder-<%= idx %>">
+            <form action="/storage" method="get">
+                <button class="folder-btn" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
+                <input type="hidden" name="folders" value="<%= folder.name %>">
+            </form>
+            </li>
+            <hr>
             <% } else { %>
             <li id="folder-<%= idx %>">
             <form action="/storage" method="get">
@@ -16,13 +24,13 @@
                 <input type="hidden" name="folders" value="<%= folder.name %>">
             </form>
             </li>
-            <% } %>
+            <% } %> %>
         <% }) %>
         <li >
             <button id="new-folder-btn" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><img width="33" src="/assets/folders/new.svg" aria-hidden="true">New Folder</button>
             <form id="new-form-li" action="/storage" method="post" class="hidden">
                 <input type="hidden" name="action" value="create" />
-                <input id="new-folder-input" type="text" name="folderName" placeholder="Folder name">
+                <input maxlength="16" id="new-folder-input" type="text" name="folderName" placeholder="Folder name">
             </form>
         </li>
     </ul>
