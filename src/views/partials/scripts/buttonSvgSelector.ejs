@@ -1,0 +1,27 @@
+<script>
+  const folderBtn = document.querySelectorAll('.folder-btn');
+  const returnImgFormat = (title, src, width = '35') =>
+    `<img width=${width} aria-hidden='true' src='/assets/folders/${src}.svg'></img> ${title} `;
+
+  folderBtn.forEach((btn, idx) => {
+    switch (idx) {
+      case 0:
+        btn.innerHTML = returnImgFormat('All Files', 'home');
+        break;
+      case 1:
+        btn.innerHTML = returnImgFormat('Documents', 'document', '30');
+        break;
+      case 2:
+        btn.innerHTML = returnImgFormat('Images', 'img', '32');
+        break;
+      case 3:
+        btn.innerHTML = returnImgFormat('Gif', 'gif', '30');
+        break;
+      case 4:
+        btn.innerHTML = returnImgFormat('Other', 'other', '30');
+        break;
+      default:
+        btn.innerHTML = returnImgFormat('', 'folder', '30') + btn.textContent;
+    }
+  });
+</script>

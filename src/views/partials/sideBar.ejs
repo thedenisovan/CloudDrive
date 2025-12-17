@@ -1,28 +1,46 @@
-<aside id="nav-bar" style="display:none; ">
+<aside id="nav-bar" style="display:none;">
     <ul id="nav-ul" class="flex-col">
         <% folders.forEach((folder, idx) => { %>
             <% if (idx === 1) { %>
-                <h4>Folders</h4>
+                <h4 style="font-size: 1.4rem;margin-top: 1rem; margin-left: 28px; font-weight: 300; color: #2d3542;">Folders</h4>
                 <li id="folder-<%= idx %>">
                 <form action="/storage" method="get">
-                    <button><%= folder.name %></button>
+                    <button class="folder-btn" style="font-weight: 300;display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
                     <input type="hidden" name="folders" value="<%= folder.name %>">
                 </form>
                 </li>
             <% } else { %>
             <li id="folder-<%= idx %>">
             <form action="/storage" method="get">
-                <button><%= folder.name %></button>
+                <button class="folder-btn" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
                 <input type="hidden" name="folders" value="<%= folder.name %>">
             </form>
             </li>
             <% } %>
         <% }) %>
-        <li>
-            <form action="/storage" method="post">
+        <li >
+            <button id="new-folder-btn" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><img width="33" src="/assets/folders/new.svg" aria-hidden="true">New Folder</button>
+            <form id="new-form-li" action="/storage" method="post" class="hidden">
                 <input type="hidden" name="action" value="create" />
                 <input id="new-folder-input" type="text" name="folderName" placeholder="Folder name">
             </form>
         </li>
     </ul>
 </aside>
+
+<%- include('./scripts/buttonSvgSelector')  %>
+
+<script>
+    const newFolderBtn = document.getElementById('new-folder-btn');
+    const formLi = document.getElementById('new-form-li');
+
+    newFolderBtn.addEventListener('click', () => {
+        formLi.classList.remove('hidden');
+        newFolderBtn.classList.add('hidden');
+    })
+
+    formLi.addEventListener('submit', () => {
+        formLi.classList.add('hidden');
+        newFolderBtn.classList.remove('hidden');
+    })
+</script>
