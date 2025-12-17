@@ -7,7 +7,7 @@
     <%- include('./partials/shared', {page: 'Storage Page'}) %>
   </head>
   <body style="display: flex; align-items: center; justify-content: center; background-color: black;">
-    <form style="padding: 1.3rem; border-radius: .5rem; width: clamp(350px, 60vw, 700px); height: clamp(540px, 70vh, 900px); background-color: white;" action="/upload" method="post" enctype="multipart/form-data">
+    <form style="padding: 1.3rem; border-radius: .5rem; width: clamp(350px, 60vw, 700px); height: clamp(540px, 70vh, 900px); background-color: white;" action="/upload" method="post" id="file-upload-form">
       <div style="margin: .7rem 0; display: flex; justify-content: space-between; align-items: center;">
         <h2 style="font-weight: 300; font-size: 1.4rem;">Upload Files</h2>
         <a href="/storage" style="text-decoration: none; color: gray; font-size: 1.3rem;">X</a>
@@ -35,8 +35,47 @@
       </div>
 
       <input type="file" name="file" required id="file">
-      <button>Submit</button>
+      <button id="submit-btn">Submit</button>
     </form>
   </body>
   <%- include('./partials/scripts/extensionValidator') %>
 </html>
+
+<script type="module">
+  
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+  const file = document.getElementById('file');
+  const subBtn = document.getElementById('submit-btn');
+
+  const SUPABASE_URL = "https://xyyamrfglofsgsvbahhm.supabase.co";
+  const SUPABASE_API = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh5eWFtcmZnbG9mc2dzdmJhaGhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU2MTQyNTcsImV4cCI6MjA4MTE5MDI1N30.HmfvV3I9eHLwhEJSBLUF3Z-0kwrtwy5NJa19tIRs4e4"
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_API);
+
+  // Upload file using standard upload
+  async function uploadFile() {
+    const folder = document.getElementById('select-folder').value;
+
+    if (!file.files.length) {
+      console.error('No file selected!');
+      return;
+    }
+
+    const { data, error } = await supabase.storage
+      .from('folder')
+      .upload(`${folder}/${file.files[0].name}`, file.files[0], {
+    cacheControl: '3600',
+    upsert: true
+  });
+
+    if (error) console.error(error);
+    else console.log('Uploaded:', data);
+
+  }
+
+  subBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // prevent default form submission
+    uploadFile();
+  });
+</script>
