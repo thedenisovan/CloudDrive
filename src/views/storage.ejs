@@ -4,7 +4,7 @@
   <body id="storage-page">
     <%- include('./partials/header', {page: 'Storage Page'}) %>
     <div style="display: flex; flex: 1;">
-      <%- include('./partials/sideBar') %>
+      <%- include('./partials/sideBar', {profile, user}) %>
       <section style="display: flex; flex-direction: column; flex: 1">
         <header id="storage-header">
           <form id="select-form" action="/storage" method="get">
