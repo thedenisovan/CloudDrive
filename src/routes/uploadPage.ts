@@ -20,7 +20,7 @@ uploadPage.post('', upload.single('file'), async (req, res) => {
 
     await uploadFile(userId, file, folder);
     await uploadUrlToDb(userId, file, folder);
-    res.redirect('storage');
+    res.redirect('storage?folders=All+Files');
   } catch (err) {
     console.error(err);
     res.status(500).redirect('404');

@@ -11,7 +11,7 @@ signinPage.post(
   signinValidator,
   validatorMiddleware,
   passport.authenticate('local', {
-    successRedirect: '/storage',
+    successRedirect: '/storage?folders=All+Files',
     failureRedirect: '/',
     failureMessage: true,
   })

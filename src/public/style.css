@@ -837,6 +837,13 @@ aside {
 .file-container {
   display: grid;
   grid-template-columns: 1fr;
+  row-gap: 1rem;
+  column-gap: 1rem;
+}
+
+.file-div:hover {
+  box-shadow: -1px 3px rgb(214, 214, 214);
+  transform: scale(1.0001);
 }
 
 .file-div {
@@ -844,6 +851,7 @@ aside {
   border: 1px solid var(--gray-med);
   border-radius: var(--1);
   padding: var(--2);
+  transition: 0.2s;
 
   & h6 {
     font-size: 1.2rem;
@@ -927,6 +935,10 @@ aside {
     column-gap: var(--7);
     row-gap: var(--7);
   }
+
+  .file-container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -958,10 +970,17 @@ aside {
   #nav-bar {
     display: block !important;
   }
+
+  .file-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 1280px) {
+  .file-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
