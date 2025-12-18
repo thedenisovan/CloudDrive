@@ -38,6 +38,41 @@
           <h2>
           <%= (selectedFolder) %>
           </h2>
+          <% if (files.length === 0) {} else if (files.length === 1) { %>
+          <p>
+            <%= files.length %>
+            file
+          </p>
+          <% } else { %>
+            <p>
+            <%= files.length %>
+            files
+          </p>
+          <% } %>
+          <div class="file-container">
+          <% files.forEach(file => { %>
+            <div class="file-div">
+              <!-- checks what extension file have and adds correct svg to it -->
+              <header class="file-header">
+                <%- include('./partials/fileSvg', {ext: file.name.split('.')[file.name.split('.').length - 1]}) %>
+                <h6>
+                  <%= file.name %>
+                </h6>
+              </header>
+              <div class="file-footer">
+                <p>
+                  <%= Number.parseFloat(file.size / 1000000).toFixed(2) %>
+                  MB
+                </p>
+                <p>
+                  <%= new Date(file.createdAt).getDate() %>
+                  / <%= new Date(file.createdAt).getMonth() + 1 %>
+                  / <%= new Date(file.createdAt).getFullYear() %>
+                </p>
+              </div>
+            </div>
+          <% }); %>
+          </div>
         </main>
       </section>
     </div>

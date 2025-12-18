@@ -825,6 +825,41 @@ aside {
   width: 80% !important;
 }
 
+/* FILE CARD SECTION */
+
+.file-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.file-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.file-div {
+  background-color: white;
+  border: 1px solid var(--gray-med);
+  border-radius: var(--1);
+  padding: var(--2);
+
+  & h6 {
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+}
+
+.file-footer {
+  display: flex;
+  justify-content: space-between;
+
+  & p {
+    color: rgb(82, 82, 82);
+  }
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 768px) {
   #home-page section {
