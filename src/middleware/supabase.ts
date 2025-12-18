@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../lib/prisma.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -7,6 +7,8 @@ const supabase = createClient(
   process.env.SUPABASE_URL!,
   process.env.SUPABASE_API!
 );
+
+// Upload file to user's supabase
 
 export async function uploadFile(
   userId: string | number,
@@ -24,6 +26,8 @@ export async function uploadFile(
   if (error) throw error;
   return data;
 }
+
+// Upload file url from supabase to neon database
 
 export async function uploadUrlToDb(
   userId: string | number,

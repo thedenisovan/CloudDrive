@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../lib/prisma.js';
 
 export default async function cdFolder(req: Request, res: Response) {
   const { action, selectedFolder } = req.body;

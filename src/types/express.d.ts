@@ -12,13 +12,24 @@ declare global {
       originalname: string;
       encoding: string;
       mimetype: string;
-      buffer: Blob;
+      buffer: Buffer; // better than Blob in Node
       size: number;
     }
+
+    interface DbFile {
+      data: string;
+      id: number;
+      name: string;
+      createdAt: Date;
+      size: number;
+      folderId: number;
+    }
+
     interface Request {
-      folders: any;
-      user: any;
-      file: any;
+      folders?: any;
+      user?: User;
+      file?: File;
+      dbFile?: DbFile[]; // or Array<File>
     }
   }
 }
