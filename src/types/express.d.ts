@@ -23,18 +23,4 @@ declare global {
   }
 }
 
-// declare global {
-//   namespace Express {
-//     interface Request {
-//       folders: any;
-//       user: any;
-//       file: any;
-//     }
-//   }
-// }
-
-declare global {
-  namespace;
-}
-
 export {};
