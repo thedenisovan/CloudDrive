@@ -7,16 +7,34 @@ declare global {
       surname: string;
       password: string;
     }
-  }
-}
-
-declare global {
-  namespace Express {
+    interface File {
+      fieldname: string;
+      originalname: string;
+      encoding: string;
+      mimetype: string;
+      buffer: Blob;
+      size: number;
+    }
     interface Request {
       folders: any;
       user: any;
+      file: any;
     }
   }
+}
+
+// declare global {
+//   namespace Express {
+//     interface Request {
+//       folders: any;
+//       user: any;
+//       file: any;
+//     }
+//   }
+// }
+
+declare global {
+  namespace;
 }
 
 export {};
