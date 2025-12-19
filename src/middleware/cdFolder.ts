@@ -3,7 +3,8 @@ import { prisma } from '../lib/prisma.js';
 import { deleteFromSupabase } from './supabase.js';
 
 export default async function cdFolder(req: Request, res: Response) {
-  const { action, selectedFolder, fileId, fileName, folderName } = req.body;
+  const { action, selectedFolder, fileId, fileName, folderName, fileSize } =
+    req.body;
   let profileId = null;
 
   try {
@@ -24,10 +25,24 @@ export default async function cdFolder(req: Request, res: Response) {
         },
       });
     } else if (action === 'deleteFile') {
+      const availStorage = await prisma.profile.findUnique({
+        where: { id: profileId!.id },
+      });
       deleteFromSupabase(fileName, req.user!.id, fileId);
       await prisma.file.delete({
         where: {
           id: Number(fileId),
+        },
+      });
+      await prisma.profile.update({
+        where: {
+          id: profileId!.id,
+        },
+        data: {
+          usedStorage:
+            Math.round(
+              (Number(availStorage!.usedStorage) + fileSize / 1_000_000) * 100
+            ) / 100,
         },
       });
     }

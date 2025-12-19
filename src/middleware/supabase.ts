@@ -63,6 +63,22 @@ export async function uploadUrlToDb(
       size: file.size,
     },
   });
+
+  const availStorage = await prisma.profile.findUnique({
+    where: { id: profileId!.id },
+  });
+
+  await prisma.profile.update({
+    where: {
+      id: profileId!.id,
+    },
+    data: {
+      usedStorage:
+        Math.round(
+          (Number(availStorage!.usedStorage) - file.size / 1_000_000) * 100
+        ) / 100,
+    },
+  });
 }
 
 // Helper function to find folder name based on fileId input

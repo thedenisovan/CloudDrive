@@ -35,9 +35,9 @@
       </div>
 
       <p id="avail-storage">Available storage: 
-        <%= 100 - profile.usedStorage  %>
+        <%= profile.usedStorage  %>
         MB
-        <span id="new-storage" class="hidden">(new storage: )</span>
+        <span id="new-storage" class="hidden">(new storage: </span>
       </p>
 
       <input id="storage-info" type="hidden" value="<%= profile.usedStorage %>">
@@ -55,14 +55,12 @@
 
     fil.addEventListener('change', () => {
       size = Number.parseFloat(fil.files[0].size / 1000000).toFixed(2);
-      const n = +usedStorage - +size;
-      newStorage.textContent += usedStorage.value;
-      newStorage.classList.remove('hidden')
-    })
+      const n = +usedStorage.value - +size ;
 
-    submitBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log(size)
+      newStorage.textContent += n.toFixed(2) + ' MB)';
+      newStorage.classList.remove('hidden')
+
+      if (n <= 0) submitBtn.setAttribute('disabled', 'true')
     })
 
   </script>
