@@ -1,0 +1,33 @@
+<script>
+  const container = document.querySelectorAll('.file-div');
+  const actionBox = document.querySelectorAll('.action-box');
+
+  container.forEach((cont) => {
+    const dropdown = document.querySelector(
+      `[data-file="${cont.dataset.button}"]`
+    );
+
+    cont.addEventListener('click', (e) => {
+      const target = e.target;
+
+      if (
+        target.classList.contains('dot-btn') ||
+        target.classList.contains('dots')
+      ) {
+        dropdown.classList.toggle('hidden');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+
+    if (
+      !(
+        target.classList.contains('dot-btn') ||
+        target.classList.contains('dots')
+      )
+    )
+      actionBox.forEach((box) => box.classList.add('hidden'));
+  });
+</script>
