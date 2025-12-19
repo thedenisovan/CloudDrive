@@ -9,9 +9,9 @@ const supabase = createClient(
 );
 
 // Upload file to user's supabase
-export async function uploadFile(
+async function uploadFile(
   userId: string | number,
-  file: Express.File | any,
+  file: Express.File,
   folder: string
 ) {
   if (!file) throw new Error('No file provided');
@@ -19,19 +19,23 @@ export async function uploadFile(
   const { data, error } = await supabase.storage
     .from('folder')
     .upload(`${userId}/${folder}/${file.originalname}`, file.buffer, {
-      upsert: true,
+      upsert: false,
     });
 
-  if (error) throw error;
+  if (error) return null;
   return data;
 }
 
 // Upload file url from supabase to neon database
 export async function uploadUrlToDb(
   userId: string | number,
-  file: Express.File | any,
+  file: Express.File,
   folder: string
 ) {
+  const result = await uploadFile(userId, file, folder);
+
+  if (result === null) return null;
+
   const { data } = await supabase.storage
     .from('folder')
     .getPublicUrl(`${userId}/${folder}/${file.originalname}`);

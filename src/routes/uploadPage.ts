@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import getFolders from '../middleware/getFolders.js';
 import multer from 'multer';
-import { uploadFile, uploadUrlToDb } from '../middleware/supabase.js';
+import { uploadUrlToDb } from '../middleware/supabase.js';
 
 const uploadPage = Router();
 const upload = multer(); // memory storage
@@ -18,8 +18,8 @@ uploadPage.post('', upload.single('file'), async (req, res) => {
     const file = req.file;
     const folder = req.body.folder;
 
-    await uploadFile(userId, file, folder);
-    await uploadUrlToDb(userId, file, folder);
+    // await uploadFile(userId, file!, folder);
+    await uploadUrlToDb(userId, file!, folder);
     res.redirect('storage?folders=All+Files');
   } catch (err) {
     console.error(err);
