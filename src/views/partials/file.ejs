@@ -19,7 +19,10 @@
                             <a href="/viewFile">View</a>
                         </li>
                         <li>
-                            <form action="/storage">
+                            <form action="/storage" method="post">
+                                <input type="hidden" name="action" value="deleteFile" />
+                                <input type="hidden" name="fileId" value=<%= file.id %> />
+                                <input type="hidden" name="fileName" value=<%= file.name %> />
                                 <button>Delete</button>
                             </form>
                         </li>

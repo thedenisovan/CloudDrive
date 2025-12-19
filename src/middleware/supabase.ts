@@ -9,7 +9,6 @@ const supabase = createClient(
 );
 
 // Upload file to user's supabase
-
 export async function uploadFile(
   userId: string | number,
   file: Express.File | any,
@@ -28,7 +27,6 @@ export async function uploadFile(
 }
 
 // Upload file url from supabase to neon database
-
 export async function uploadUrlToDb(
   userId: string | number,
   file: Express.File | any,
@@ -61,4 +59,29 @@ export async function uploadUrlToDb(
       size: file.size,
     },
   });
+}
+
+// Helper function to find folder name based on fileId input
+async function getFolderName(fileId: string | number) {
+  const file = await prisma.file.findFirst({ where: { id: Number(fileId) } });
+  const folder = await prisma.folder.findFirst({
+    where: { id: Number(file!.folderId) },
+  });
+
+  return folder!.name;
+}
+
+export async function deleteFromSupabase(
+  fileName: string,
+  userId: string | number,
+  fileId: string | number
+) {
+  const folderName = await getFolderName(fileId);
+
+  const { data, error } = await supabase.storage
+    .from('folder')
+    .remove([`${userId}/${folderName}/${fileName}`]);
+
+  if (error) throw error;
+  return data;
 }

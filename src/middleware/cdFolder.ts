@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { prisma } from '../lib/prisma.js';
+import { deleteFromSupabase } from './supabase.js';
 
 export default async function cdFolder(req: Request, res: Response) {
-  const { action, selectedFolder } = req.body;
+  const { action, selectedFolder, fileId, fileName } = req.body;
   let profileId = null;
 
   try {
@@ -15,18 +16,23 @@ export default async function cdFolder(req: Request, res: Response) {
       await prisma.folder.create({
         data: { name: req.body.folderName, profileId: profileId.id },
       });
-    }
-
-    if (action === 'delete' && profileId) {
+    } else if (action === 'delete' && profileId) {
       await prisma.folder.deleteMany({
         where: {
           name: selectedFolder,
           profileId: profileId.id,
         },
       });
+    } else if (action === 'deleteFile') {
+      deleteFromSupabase(fileName, req.user!.id, fileId);
+      await prisma.file.delete({
+        where: {
+          id: Number(fileId),
+        },
+      });
     }
 
-    res.redirect('storage');
+    res.redirect('/storage?folders=All+Files');
   } catch {
     res.status(404).redirect('404');
     throw new Error('Error durning CRUD operation.');

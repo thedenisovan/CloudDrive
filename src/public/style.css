@@ -908,12 +908,39 @@ aside {
   position: absolute;
   right: 10px;
   border: 1px solid;
-  bottom: -75px;
+  bottom: -105px;
   background-color: white;
+  width: 150px;
+  border-radius: var(--1);
+  border: 1px solid rgb(197, 197, 197);
 
   & ul {
+    padding: var(--2);
     list-style: none;
+    width: 100%;
+
+    & button {
+      padding: 0px;
+      color: rgb(70, 70, 70) !important;
+    }
   }
+
+  & a {
+    text-decoration: none;
+    color: rgb(70, 70, 70) !important;
+  }
+}
+
+.action-box ul li {
+  width: 100%;
+}
+
+.action-box ul li:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.action-box ul li button:hover {
+  background-color: rgb(241, 241, 241);
 }
 
 /* Extra small devices (phones, 600px and down) */
