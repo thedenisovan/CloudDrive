@@ -1,0 +1,42 @@
+ <div class="file-container">
+          <% files.forEach(file => { %>
+            <div class="file-div">
+              <!-- checks what extension file have and adds correct svg to it -->
+              <header class="file-header">
+                <div >
+                  <%- include('./fileSvg', {ext: file.name.split('.')[file.name.split('.').length - 1]}) %>
+                  <h6>
+                    <%= file.name %>
+                  </h6>
+                </div>
+                <button aria-label="more options"><img class="dots" width="20" src="/assets/dots.svg" aria-hidden="true"></button>
+                <div class="action-box">
+                    <ul>
+                        <li>
+                            <a  href="<%= file.data %>?download">Download</a>
+                        </li>
+                        <li>
+                            <a href="/viewFile">View</a>
+                        </li>
+                        <li>
+                            <form action="/storage">
+                                <button>Delete</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+              <div class="file-footer">
+                <p>
+                  <%= Number.parseFloat(file.size / 1000000).toFixed(2) %>
+                  MB
+                </p>
+                <p>
+                  <%= new Date(file.createdAt).getDate() %>
+                  / <%= new Date(file.createdAt).getMonth() + 1 %>
+                  / <%= new Date(file.createdAt).getFullYear() %>
+                </p>
+            </div>
+        </div>
+    <% }); %>
+</div>

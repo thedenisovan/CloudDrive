@@ -847,8 +847,24 @@ aside {
 .file-header {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  justify-content: space-between;
   margin-bottom: 0.8rem;
+  position: relative;
+
+  & div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  & button {
+    background-color: white;
+    border: none;
+  }
+}
+.dots {
+  min-width: 15px !important;
+  max-width: 15px;
 }
 
 .file-container {
@@ -873,6 +889,9 @@ aside {
   & h6 {
     font-size: 1.2rem;
     font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -882,6 +901,18 @@ aside {
 
   & p {
     color: rgb(82, 82, 82);
+  }
+}
+
+.action-box {
+  position: absolute;
+  right: 10px;
+  border: 1px solid;
+  bottom: -75px;
+  background-color: white;
+
+  & ul {
+    list-style: none;
   }
 }
 
