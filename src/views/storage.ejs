@@ -8,7 +8,7 @@
       <section style="display: flex; flex-direction: column; flex: 1">
         <header id="storage-header">
           <form id="select-form" action="/storage" method="get">
-            <select name="folders" onchange="this.form.submit()">
+            <select style="padding-left: 1rem;" name="folders" onchange="this.form.submit()">
             <% folders.forEach((folder, idx) => { %>
                 <option value="<%= folder.name %>"
                     <%= folder.name === (selectedFolder || folders[0].name) ? 'selected' : '' %>>

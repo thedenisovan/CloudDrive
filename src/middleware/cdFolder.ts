@@ -3,7 +3,7 @@ import { prisma } from '../lib/prisma.js';
 import { deleteFromSupabase } from './supabase.js';
 
 export default async function cdFolder(req: Request, res: Response) {
-  const { action, selectedFolder, fileId, fileName } = req.body;
+  const { action, selectedFolder, fileId, fileName, folderName } = req.body;
   let profileId = null;
 
   try {
@@ -12,15 +12,15 @@ export default async function cdFolder(req: Request, res: Response) {
       select: { id: true },
     });
 
-    if (action === 'create' && profileId) {
+    if (action === 'create') {
       await prisma.folder.create({
-        data: { name: req.body.folderName, profileId: profileId.id },
+        data: { name: folderName, profileId: profileId!.id },
       });
-    } else if (action === 'delete' && profileId) {
+    } else if (action === 'delete') {
       await prisma.folder.deleteMany({
         where: {
           name: selectedFolder,
-          profileId: profileId.id,
+          profileId: profileId!.id,
         },
       });
     } else if (action === 'deleteFile') {

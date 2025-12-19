@@ -33,7 +33,7 @@ model User {
 model Profile {
   id          Int      @id @default(autoincrement())
   folders     Folder[]
-  usedStorage Float    @default(0)
+  usedStorage Float    @default(20)
   user        User     @relation(fields: [userId], references: [id])
   userId      Int      @unique
 }

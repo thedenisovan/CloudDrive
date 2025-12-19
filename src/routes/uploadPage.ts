@@ -2,13 +2,17 @@ import { Router } from 'express';
 import getFolders from '../middleware/getFolders.js';
 import multer from 'multer';
 import { uploadUrlToDb } from '../middleware/supabase.js';
+import { prisma } from '../lib/prisma.js';
 
 const uploadPage = Router();
 const upload = multer(); // memory storage
 
-uploadPage.get('', getFolders, (req, res) => {
+uploadPage.get('', getFolders, async (req, res) => {
   res.render('uploadFileForm', {
     folders: req.folders,
+    profile: await prisma.profile.findUnique({
+      where: { userId: req.user!.id },
+    }),
   });
 });
 
