@@ -6,22 +6,22 @@
   folderBtn.forEach((btn, idx) => {
     switch (idx) {
       case 0:
-        btn.innerHTML = returnImgFormat('All Files', 'home');
+        btn.innerHTML = returnImgFormat('All Files', 'home', '30');
         break;
       case 1:
-        btn.innerHTML = returnImgFormat('Documents', 'document', '30');
+        btn.innerHTML = returnImgFormat('Documents', 'document', '25');
         break;
       case 2:
-        btn.innerHTML = returnImgFormat('Images', 'img', '32');
+        btn.innerHTML = returnImgFormat('Images', 'img', '25');
         break;
       case 3:
-        btn.innerHTML = returnImgFormat('Gif', 'gif', '30');
+        btn.innerHTML = returnImgFormat('Gif', 'gif', '25');
         break;
       case 4:
-        btn.innerHTML = returnImgFormat('Other', 'other', '30');
+        btn.innerHTML = returnImgFormat('Other', 'other', '25');
         break;
       default:
-        btn.innerHTML = returnImgFormat('', 'folder', '30') + btn.textContent;
+        btn.innerHTML = returnImgFormat('', 'folder', '25') + btn.textContent;
     }
   });
 </script>

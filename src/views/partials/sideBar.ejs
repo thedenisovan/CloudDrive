@@ -5,47 +5,48 @@
                 <h4 style="font-size: 1.3rem;margin-top: 1rem; margin-left: 16px; font-weight: 300; color: #2d3542;">Folders</h4>
                 <li id="folder-<%= idx %>">
                 <form action="/storage" method="get">
-                    <button class="folder-btn" style="font-weight: 300;display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
+                    <button class="folder-btn" data-folderName="<%= folder.name  %>" style="font-weight: 300;display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
                     <input type="hidden" name="folders" value="<%= folder.name %>">
                 </form>
                 </li>
             <% } else if (idx === 4) { %>
             <li id="folder-<%= idx %>">
             <form action="/storage" method="get">
-                <button class="folder-btn" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
+                <button class="folder-btn" data-folderName="<%= folder.name  %>" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
                 <input type="hidden" name="folders" value="<%= folder.name %>">
             </form>
             </li>
-            <hr>
+            <hr style="border: 1px solid rgb(236, 236, 236);">
             <% } else { %>
             <li id="folder-<%= idx %>">
             <form action="/storage" method="get">
-                <button class="folder-btn" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
+                <button class="folder-btn" data-folderName="<%= folder.name  %>" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><%= folder.name %></button>
                 <input type="hidden" name="folders" value="<%= folder.name %>">
             </form>
             </li>
             <% } %> %>
         <% }) %>
         <li >
-            <button id="new-folder-btn" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><img width="33" src="/assets/folders/new.svg" aria-hidden="true">New Folder</button>
+            <button id="new-folder-btn" style="font-weight: 300; display: flex; align-items: center; gap: .6rem;"><img width="25" src="/assets/folders/new.svg" aria-hidden="true">New Folder</button>
             <form id="new-form-li" action="/storage" method="post" class="hidden">
                 <input type="hidden" name="action" value="create" />
                 <input maxlength="16" id="new-folder-input" type="text" name="folderName" placeholder="Folder name">
             </form>
         </li>
-        <% if (user.id === 3) { %>
-        <li style="font-size: 1.1rem;">
-          <p>Available Storage:
+        <li style="padding: 8px 12px;font-size: 1.1rem;">
+          <label for="progress-bar">Available Storage:
             <%= profile.usedStorage %>
             MB
-          </p>
-              <% } %>
+          </label>
+          <progress id="progress-bar" max="100" value="<%= 100 - profile.usedStorage %>"></progress>
         </li>
     </ul>
+    <input id="selected-folder" type="hidden" name="selectedFolder" value="<%= selectedFolder %>" />
 </aside>
 
 <%- include('./scripts/buttonSvgSelector')  %>
 
+<!-- New folder button and input ui changes on click or submit -->
 <script>
     const newFolderBtn = document.getElementById('new-folder-btn');
     const formLi = document.getElementById('new-form-li');
@@ -59,4 +60,16 @@
         formLi.classList.add('hidden');
         newFolderBtn.classList.remove('hidden');
     })
+</script>
+
+<!-- Ui changes for currently active folder indicator -->
+
+<script>
+    // const folderBtn = document.querySelectorAll('.folder-btn');
+    const ul = document.getElementById('nav-ul');
+    const selectFolder = document.getElementById('selected-folder');
+
+    const test = document.querySelector(`[data-foldername="${selectFolder.value}"]`);
+
+    test.style.backgroundColor = '#daeafe';
 </script>
