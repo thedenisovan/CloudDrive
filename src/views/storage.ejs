@@ -38,7 +38,17 @@
           <h2>
           <%= (selectedFolder) %>
           </h2>
-          <% if (files.length === 0) {} else if (files.length === 1) { %>
+          <% if (files.length === 0) {%>
+          <p>
+            <%= files.length %>
+            files
+          </p>
+
+          <div style=" flex-direction: column;display: flex; align-items: center; margin-top: 20vh;">
+            <h3>No files in this folder</h3>
+            <p>Upload files to get started</p>
+          </div>
+         <% } else if (files.length === 1) { %>
           <p>
             <%= files.length %>
             file
