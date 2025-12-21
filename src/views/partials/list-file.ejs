@@ -1,0 +1,31 @@
+ <div class="list-file-container hidden">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Date Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        <% files.forEach((file,idx) => { %>
+            <tr>
+                <td>
+                    <%= file.name %>
+                </td>
+                <td>
+                    <%= Number.parseFloat(file.size / 1000000).toFixed(2) %>
+                </td>
+                <td>
+                    <%= new Date(file.createdAt).getDate() %>
+                  / <%= new Date(file.createdAt).getMonth() + 1 %>
+                  / <%= new Date(file.createdAt).getFullYear() %>
+                </td>
+            </tr>
+        <% }); %>
+            </tbody>
+        </table>
+</div>
+
+<%- include('./scripts/dropdown.ejs') %>

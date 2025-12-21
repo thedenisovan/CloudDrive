@@ -2,6 +2,8 @@
   const form = document.getElementById('new-folder-form');
   const gridBtn = document.querySelector('.grid');
   const listBtn = document.querySelector('.list');
+  const gridCont = document.querySelector('.file-container');
+  const listCont = document.querySelector('.list-file-container');
 
   document.getElementById('new-folder').addEventListener('click', () => {
     form.classList.toggle('hidden');
@@ -20,11 +22,15 @@
       listBtn.classList.add('inactive');
       target.classList.remove('inactive');
       target.classList.add('active');
+      listCont.classList.add('hidden');
+      gridCont.classList.remove('hidden');
     } else if (target.classList.contains('list')) {
       gridBtn.classList.remove('active');
       gridBtn.classList.add('inactive');
       target.classList.remove('inactive');
       target.classList.add('active');
+      gridCont.classList.add('hidden');
+      listCont.classList.remove('hidden');
     }
   }
 
