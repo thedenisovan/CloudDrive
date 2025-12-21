@@ -914,7 +914,8 @@ aside {
   }
 }
 
-.action-box {
+.action-box,
+.list-action-box {
   position: absolute;
   right: 10px;
   border: 1px solid;
@@ -941,15 +942,26 @@ aside {
   }
 }
 
-.action-box ul li {
+/* TABLE  */
+
+table {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--color-gray-200);
+}
+
+.action-box ul li,
+.list-action-box ul li {
   width: 100%;
 }
 
-.action-box ul li:hover {
+.action-box ul li:hover,
+.list-action-box ul li:hover {
   background-color: rgb(241, 241, 241);
 }
 
-.action-box ul li button:hover {
+.action-box ul li button:hover,
+.list-action-box ul li button:hover {
   background-color: rgb(241, 241, 241);
 }
 

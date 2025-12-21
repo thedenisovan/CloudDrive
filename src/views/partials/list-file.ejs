@@ -1,31 +1,52 @@
- <div class="list-file-container hidden">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Size</th>
-                    <th>Modified</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-        <% files.forEach((file,idx) => { %>
-            <tr>
-                <td>
-                    <%= file.name %>
-                </td>
-                <td>
-                    <%= Number.parseFloat(file.size / 1000000).toFixed(2) %>
-                </td>
-                <td>
-                    <%= new Date(file.createdAt).getDate() %>
-                  / <%= new Date(file.createdAt).getMonth() + 1 %>
-                  / <%= new Date(file.createdAt).getFullYear() %>
-                </td>
-            </tr>
-        <% }); %>
-            </tbody>
-        </table>
-</div>
+<table class="list-file-container hidden">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Modified</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+<% files.forEach((file,idx) => { %>
+    <tr data-button="<%= idx %>" class="file-div-list">
+        <td>
+            <%= file.name %>
+        </td>
+        <td>
+            <%= Number.parseFloat(file.size / 1000000).toFixed(2) %>
+            MB
+        </td>
+        <td>
+            <%= new Date(file.createdAt).getDate() %>
+            / <%= new Date(file.createdAt).getMonth() + 1 %>
+            / <%= new Date(file.createdAt).getFullYear() %>
+        </td>
+        <td style="position: relative;">
+        <button class="dot-btn" aria-label="more options"><img class="dots" width="20" src="/assets/dots.svg" aria-hidden="true"></button>
+        <div style="z-index: 2;" class="list-action-box hidden" data-file="<%= idx %>">
+            <ul>
+                <li>
+                    <a  href="<%= file.data %>?download">Download</a>
+                </li>
+                <li>
+                    <a href="/viewFile">View</a>
+                </li>
+                <li>
+                    <form action="/storage" method="post">
+                        <input type="hidden" name="action" value="deleteFile" />
+                        <input type="hidden" name="fileId" value=<%= file.id %> />
+                        <input type="hidden" name="fileName" value=<%= file.name %> />
+                        <input type="hidden" name="fileSize" value=<%= file.size %>>
+                        <button>Delete</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        </td>
+    </tr>
+<% }); %>
+    </tbody>
+</table>
 
-<%- include('./scripts/dropdown.ejs') %>
+<%- include('./scripts/list-dropdown.ejs') %>

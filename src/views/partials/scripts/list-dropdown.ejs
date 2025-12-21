@@ -1,0 +1,37 @@
+<script>
+  const lCont = document.querySelectorAll('.file-div-list');
+  const box = document.querySelectorAll('.list-action-box');
+
+  lCont.forEach((cont) => {
+    const dropdown = document.querySelector(
+      `.list-action-box[data-file="${cont.dataset.button}"]`
+    );
+
+    if (!dropdown) return; // safeguard
+
+    cont.addEventListener('click', (e) => {
+      const target = e.target;
+
+      if (
+        target.classList.contains('dot-btn') ||
+        target.classList.contains('dots')
+      ) {
+        dropdown.classList.toggle('hidden');
+      } else {
+        box.forEach((box) => box.classList.add('hidden'));
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+
+    if (
+      !(
+        target.classList.contains('dot-btn') ||
+        target.classList.contains('dots')
+      )
+    )
+      box.forEach((box) => box.classList.add('hidden'));
+  });
+</script>
