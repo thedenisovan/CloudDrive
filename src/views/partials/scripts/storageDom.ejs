@@ -5,6 +5,9 @@
   const gridCont = document.querySelector('.file-container');
   const listCont = document.querySelector('.list-file-container');
 
+  // Saves user selected view mode to session storage so it does not update on http req
+  const viewMode = sessionStorage.getItem('viewMode') || 'grid';
+
   document.getElementById('new-folder').addEventListener('click', () => {
     form.classList.toggle('hidden');
   });
@@ -22,6 +25,7 @@
       listBtn.classList.add('inactive');
       target.classList.remove('inactive');
       target.classList.add('active');
+      sessionStorage.setItem('viewMode', 'grid');
       listCont.classList.add('hidden');
       gridCont.classList.remove('hidden');
     } else if (target.classList.contains('list')) {
@@ -29,12 +33,28 @@
       gridBtn.classList.add('inactive');
       target.classList.remove('inactive');
       target.classList.add('active');
+      sessionStorage.setItem('viewMode', 'list');
       gridCont.classList.add('hidden');
       listCont.classList.remove('hidden');
     }
   }
 
-  gridBtn.addEventListener('click', handleClick);
+  if (viewMode === 'grid') {
+    listBtn.classList.remove('active');
+    listBtn.classList.add('inactive');
+    gridBtn.classList.remove('inactive');
+    gridBtn.classList.add('active');
+    listCont.classList.add('hidden');
+    gridCont.classList.remove('hidden');
+  } else {
+    gridBtn.classList.remove('active');
+    gridBtn.classList.add('inactive');
+    listBtn.classList.remove('inactive');
+    listBtn.classList.add('active');
+    gridCont.classList.add('hidden');
+    listCont.classList.remove('hidden');
+  }
 
+  gridBtn.addEventListener('click', handleClick);
   listBtn.addEventListener('click', handleClick);
 </script>
