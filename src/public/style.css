@@ -770,6 +770,7 @@ button {
 #main-main {
   padding: var(--2);
   flex: 1;
+  max-width: 100%;
 
   & h2 {
     font-weight: 300;
@@ -950,12 +951,12 @@ aside {
 
 table {
   width: 100%;
-  text-align: left;
   border: 1px solid rgb(202, 202, 202);
   border-radius: 0.7rem !important;
   border-collapse: separate;
   border-spacing: 0;
   margin-top: 2rem;
+  table-layout: fixed;
 }
 
 table th {
@@ -970,14 +971,22 @@ tbody tr:hover {
   background-color: var(--color-gray-200);
 }
 
+table th:first-of-type {
+  text-align: left;
+}
+
 table th,
 table td {
   font-size: 1.3rem;
   font-weight: 300;
 }
 
+table tr {
+  text-align: right;
+}
+
 table td:not(:last-of-type) {
-  white-space: nowrap;
+  text-wrap: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -990,6 +999,12 @@ table th {
 
 table tr:last-child td {
   border-bottom: none;
+}
+
+table tr td:last-of-type {
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .action-box ul li,
