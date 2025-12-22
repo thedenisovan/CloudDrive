@@ -10,7 +10,7 @@
   <form enctype="multipart/form-data" action="/upload" method="post" id="file-upload-form" style="display: flex; flex-direction: column; gap: 1.5rem; padding: 2rem; border-radius: 1rem; width: clamp(350px, 50vw, 600px); background-color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: transform 0.2s ease-in-out;">
     
     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 0.5rem; margin-bottom: 1rem;">
-      <h2 style="font-weight: 500; font-size: 1.5rem; color: #333;">Upload Files <span style="font-size: 1.2rem;color: #666" tabindex="1" aria-label="maximum file capacity">(12mb max)</span></h2>
+      <h2 style="font-weight: 500; font-size: 1.5rem; color: #333;">Upload Files <span style="font-size: 1.2rem;color: #666" tabindex="1" aria-label="maximum file capacity">(12 MB max)</span></h2>
       <a href='/storage?folders=All+Files' style="text-decoration: none; color: #999; font-size: 1.3rem; transition: color 0.2s;" onmouseover="this.style.color='#ff4d4d'" onmouseout="this.style.color='#999'">X</a>
     </div>
 
@@ -53,34 +53,35 @@
     const newStorage = document.getElementById('new-storage');
     const dragArea = document.getElementById('drag-area');
     const acceptedFiles = document.getElementById('accepted-files');
+    const MAX_FILE_SIZE_MB = 12;
 
-      // Drag and Drop events
-      ['dragenter', 'dragover'].forEach(evt => {
-        dragArea.addEventListener(evt, (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          dragArea.style.backgroundColor = '#f0f8ff';
-          dragArea.style.borderColor = '#007bff';
-        });
+    // Drag and Drop events
+    ['dragenter', 'dragover'].forEach(evt => {
+      dragArea.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragArea.style.backgroundColor = '#f0f8ff';
+        dragArea.style.borderColor = '#007bff';
       });
+    });
 
-      ['dragleave', 'drop'].forEach(evt => {
-        dragArea.addEventListener(evt, (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          dragArea.style.backgroundColor = '';
-          dragArea.style.borderColor = '#aaa';
-        });
+    ['dragleave', 'drop'].forEach(evt => {
+      dragArea.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragArea.style.backgroundColor = '';
+        dragArea.style.borderColor = '#aaa';
       });
+    });
 
-      dragArea.addEventListener('click', () => fil.click());
+    dragArea.addEventListener('click', () => fil.click());
 
-      dragArea.addEventListener('drop', (e) => {
-        if (e.dataTransfer.files.length) {
-          fil.files = e.dataTransfer.files;
-          handleFile();
-        }
-      });
+    dragArea.addEventListener('drop', (e) => {
+      if (e.dataTransfer.files.length) {
+        fil.files = e.dataTransfer.files;
+        handleFile();
+      }
+    });
 
     fil.addEventListener('change', handleFile);
 
@@ -88,15 +89,24 @@
       const file = fil.files[0];
       if (!file) return;
 
+      const sizeMB = file.size / 1000000;
+
+      if (sizeMB > MAX_FILE_SIZE_MB) {
+        alert(`File exceeds the maximum allowed size of ${MAX_FILE_SIZE_MB} MB.`);
+        fil.value = '';
+        acceptedFiles.textContent = '';
+        newStorage.classList.add('hidden');
+        submitBtn.setAttribute('disabled', 'true');
+        return;
+      }
+
       acceptedFiles.textContent = file.name;
 
-      const size = Number.parseFloat(file.size / 1000000);
-      const n = +usedStorage.value - size;
-
-      newStorage.textContent = `(new storage: ${n.toFixed(2)} MB)`;
+      const remainingStorage = Number.parseFloat(usedStorage.value) - sizeMB;
+      newStorage.textContent = `(new storage: ${remainingStorage.toFixed(2)} MB)`;
       newStorage.classList.remove('hidden');
 
-      if (n <= 0) submitBtn.setAttribute('disabled', 'true');
+      if (remainingStorage <= 0) submitBtn.setAttribute('disabled', 'true');
       else submitBtn.removeAttribute('disabled');
     }
   </script>

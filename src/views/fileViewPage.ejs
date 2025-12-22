@@ -1,10 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Details | SilverCloud</title>
   <%- include('./partials/shared', {page: 'Home Page'}) %>
-  <body>
-    <header>
-        <h1>File Details</h1>
-        <a href="../storage?folders=All+Files">X</a>
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, #1a1a1a, #333); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0;">
+
+  <main style="display: flex; flex-direction: column; gap: 1.5rem; padding: 2rem; border-radius: 1rem; width: clamp(350px, 50vw, 600px); background-color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: transform 0.2s ease-in-out;">
+
+    <header style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 0.5rem; margin-bottom: 1rem;">
+      <h1 style="font-weight: 500; font-size: 1.5rem; color: #333;">File Details</h1>
+      <a href="../storage?folders=All+Files" style="text-decoration: none; color: #999; font-size: 1.3rem; transition: color 0.2s;" onmouseover="this.style.color='#ff4d4d'" onmouseout="this.style.color='#999'">X</a>
     </header>
-  </body>
+
+    <div class="display" style="display: flex; justify-content: center; align-items: center; margin-bottom: 1rem;">
+      <input type="hidden" name="ext" id="ext" value="<%= file.name %>">
+      <input type="hidden" name="url" id="url" value="<%= file.data %>">
+    </div>
+
+    <section style="display: flex; flex-direction: column; gap: 0.3rem;">
+      <h2 style="font-weight: 500; color: #444;">Name</h2>
+      <p style="color: #555;"><%= file.name %></p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 0.3rem;">
+      <h3 style="font-weight: 500; color: #444;">Size</h3>
+      <p style="color: #555;"><%= (file.size / 1000000).toFixed(2) %> MB</p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 0.3rem;">
+      <h4 style="font-weight: 500; color: #444;">Uploaded</h4>
+      <p style="color: #555;">
+        <%= new Date(file.createdAt).getDate() %> /
+        <%= new Date(file.createdAt).getMonth() + 1 %> /
+        <%= new Date(file.createdAt).getFullYear() %>
+      </p>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 0.3rem;">
+      <h4 style="font-weight: 500; color: #444;">Type</h4>
+      <p style="color: #555;"><%= file.name.split('.')[file.name.split('.').length -1] %></p>
+    </section>
+
+    <footer style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+      <form action="/storage" method="post" style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <input type="hidden" name="action" value="deleteFile" />
+        <input type="hidden" name="fileId" value="<%= file.id %>" />
+        <input type="hidden" name="fileName" value="<%= file.name %>" />
+        <input type="hidden" name="fileSize" value="<%= file.size %>">
+        <button style="background-color: #ff4d4d; color: white; padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; cursor: pointer; transition: background-color 0.2s;">Delete</button>
+      </form>
+      <div style="display: flex; gap: 0.5rem;">
+        <a href="../storage?folders=All+Files" style="text-decoration: none; color: #007bff; font-weight: 500;">Close</a>
+        <a href="<%= file.data %>?download" style="text-decoration: none; color: #007bff; font-weight: 500;">Download</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    const ext = document.querySelector('#ext').value.split('.');
+    const fileExt = ext[ext.length - 1];
+    const url = document.querySelector('#url').value;
+    const display = document.querySelector('.display');
+
+    if (fileExt === 'jpg' || fileExt === 'gif') {
+      const img = document.createElement('img');
+      img.src = url;
+      img.style.maxWidth = '100%';
+      img.style.borderRadius = '0.5rem';
+      display.appendChild(img);
+    } else if (fileExt === 'mp4') {
+      const vid = document.createElement('video');
+      const vidSrc = document.createElement('source');
+      vidSrc.setAttribute('src', url);
+      vid.setAttribute('loop', 'true');
+      vid.setAttribute('autoplay', 'true');
+      vid.setAttribute('controls', 'true');
+      vid.style.maxWidth = '100%';
+      vid.style.borderRadius = '0.5rem';
+      vid.appendChild(vidSrc);
+      display.appendChild(vid);
+    }
+  </script>
+
+</body>
 </html>
