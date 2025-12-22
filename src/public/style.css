@@ -1001,12 +1001,6 @@ table tr:last-child td {
   border-bottom: none;
 }
 
-table tr td:last-of-type {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-}
-
 .action-box ul li,
 .list-action-box ul li {
   width: 100%;
