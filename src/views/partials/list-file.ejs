@@ -2,29 +2,30 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Size</th>
-            <th>Modified</th>
+            <th class="hidden-cols">Size</th>
+            <th class="hidden-cols">Modified</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 <% files.forEach((file,idx) => { %>
     <tr data-button="<%= idx %>" class="file-div-list">
-        <td>
+        <td style=" display: flex; align-items: center; gap: .3rem;">
+            <%- include('./fileSvg', {ext: file.name.split('.')[file.name.split('.').length - 1]}) %>
             <%= file.name %>
         </td>
-        <td>
+        <td class="hidden-cols">
             <%= Number.parseFloat(file.size / 1000000).toFixed(2) %>
             MB
         </td>
-        <td>
+        <td class="hidden-cols"> 
             <%= new Date(file.createdAt).getDate() %>
             / <%= new Date(file.createdAt).getMonth() + 1 %>
             / <%= new Date(file.createdAt).getFullYear() %>
         </td>
         <td style="position: relative;">
-        <button style="background-color: white; border: none;" class="dot-btn" aria-label="more options"><img class="dots" width="20" src="/assets/dots.svg" aria-hidden="true"></button>
-        <div style="z-index: 2;" class="list-action-box hidden" data-file="<%= idx %>">
+        <button data-b="<%= idx %>" style="background-color: white; border: none;" class="dot-btn" aria-label="more options"><img class="dots" width="20" src="/assets/dots.svg" aria-hidden="true"></button>
+        <div style="z-index: 5;" class="list-action-box hidden" data-file="<%= idx %>">
             <ul>
                 <li>
                     <a  href="<%= file.data %>?download">Download</a>
@@ -48,5 +49,19 @@
 <% }); %>
     </tbody>
 </table>
+
+<script>
+    const tr = document.querySelectorAll('tbody tr');
+
+    tr.forEach(r => {
+        r.addEventListener('mouseover', () => {
+            document.querySelector(`[data-b="${r.dataset.button}"]`).style.transition = '.25s'
+            document.querySelector(`[data-b="${r.dataset.button}"]`).style.backgroundColor = '#EFEFF1'
+        })
+        r.addEventListener('mouseout', () => {
+            document.querySelector(`[data-b="${r.dataset.button}"]`).style.backgroundColor = 'white'
+        })
+    })
+</script>
 
 <%- include('./scripts/list-dropdown.ejs') %>

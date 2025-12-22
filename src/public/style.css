@@ -667,6 +667,10 @@ button {
   background-color: #9a0000;
 }
 
+#del-folder {
+  margin: 0.5rem 0 0 0;
+}
+
 #new-folder,
 #del-folder {
   height: 2.6rem !important;
@@ -700,10 +704,10 @@ button {
 #view-container {
   display: flex;
   align-items: center;
-  background-color: var(--color-gray-50);
+  background-color: rgb(231, 231, 231);
   padding: 0.2rem;
   border-radius: 0.4rem;
-  gap: 1px;
+  gap: var(--1);
 }
 
 #upload-btn {
@@ -948,21 +952,44 @@ table {
   width: 100%;
   text-align: left;
   border: 1px solid rgb(202, 202, 202);
-  border-radius: var(--1);
+  border-radius: 0.7rem !important;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 2rem;
+}
+
+table th {
+  color: rgb(65, 65, 65);
+}
+
+tr {
+  transition: 0.25s;
+}
+
+tbody tr:hover {
+  background-color: var(--color-gray-200);
+}
+
+table th,
+table td {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+table td:not(:last-of-type) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 table td,
 table th {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid rgb(202, 202, 202);
   padding: var(--2);
 }
 
 table tr:last-child td {
   border-bottom: none;
-}
-
-table {
-  border-collapse: collapse;
 }
 
 .action-box ul li,
@@ -978,6 +1005,11 @@ table {
 .action-box ul li button:hover,
 .list-action-box ul li button:hover {
   background-color: rgb(241, 241, 241);
+}
+
+.list-action-box ul li button {
+  background-color: white;
+  border: none;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -1035,6 +1067,10 @@ table {
   }
 
   #cta {
+    display: none;
+  }
+
+  .hidden-cols {
     display: none;
   }
 }

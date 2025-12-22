@@ -6,7 +6,7 @@
     <div style="display: flex; flex: 1;">
       <%- include('./partials/sideBar', {profile, user, selectedFolder}) %>
       <section style="display: flex; flex-direction: column; flex: 1">
-        <header id="storage-header">
+        <header id="storage-header" style="padding: 2rem 2rem 0 2rem;">
           <form id="select-form" action="/storage" method="get">
             <select style="padding-left: 1rem;" name="folders" onchange="this.form.submit()">
             <% folders.forEach((folder, idx) => { %>
@@ -23,8 +23,6 @@
               <input id="selected-folder" type="hidden" name="selectedFolder" value="<%= selectedFolder %>" />
               <button style="background-color: #ffe0e0;" id="del-folder"><img src="/assets/del.svg" alt="create new folder" aria-label="create new folder"></button>
             </form>
-            <h1>
-            </h1>
           <% } %>
           <button id="new-folder"><img src="/assets/add.svg" alt="create new folder" aria-label="create new folder"></button>
           <div id="view-container">
@@ -34,33 +32,35 @@
           <a href="/upload"><button id="upload-btn" style="display: flex; align-items: center;"><img src="/assets/upload-1.svg" aria-hidden="true" width="25"><p style="font-size: 1.1rem;">Upload</p></button></a>
         </header>
         <%- include('./partials/new-folder-form.ejs') %>
-        <main id="main-main">
-          <h2>
+        <main id="main-main" style="padding: 2rem;">
+          <h2 style="font-size: 2rem;">
           <%= (selectedFolder) %>
           </h2>
           <% if (files.length === 0) {%>
-          <p>
+          <p style="font-size: 1.4rem;font-weight: 300;">
             <%= files.length %>
             files
           </p>
 
           <div style=" flex-direction: column;display: flex; align-items: center; margin-top: 20vh;">
-            <h3>No files in this folder</h3>
-            <p>Upload files to get started</p>
+            <h3 style="font-size: 1.2rem; font-weight: 300;">No files in this folder</h3>
+            <p style="font-size: 1.3rem; font-weight: 300;">Upload files to get started</p>
           </div>
          <% } else if (files.length === 1) { %>
-          <p>
+          <p style="font-size: 1.4rem;font-weight: 300;">
             <%= files.length %>
             file
           </p>
           <% } else { %>
-            <p>
+            <p style="font-size: 1.4rem;font-weight: 300;">
             <%= files.length %>
             files
           </p>
           <% } %>
-          <%- include('./partials/file.ejs') %>
-          <%- include('./partials/list-file.ejs') %>
+          <% if (files.length) { %>
+            <%- include('./partials/file.ejs') %>
+            <%- include('./partials/list-file.ejs') %>
+          <% } %>
         </main>
       </section>
     </div>

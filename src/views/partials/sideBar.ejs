@@ -33,12 +33,12 @@
                 <input maxlength="16" id="new-folder-input" type="text" name="folderName" placeholder="Folder name">
             </form>
         </li>
-        <li style="padding: 8px 12px;font-size: 1.1rem;">
+        <li style="padding: 8px 12px;font-size: 1.2rem; font-weight: 300; margin-top: 2rem;">
           <label for="progress-bar">Available Storage:
             <%= profile.usedStorage %>
-            MB
+            <span style="font-size: 1rem;">MB</span>
           </label>
-          <progress id="progress-bar" max="100" value="<%= 100 - profile.usedStorage %>"></progress>
+              <progress style="width: 98%;" id="progress-bar" max="100" value="<%= 100 - profile.usedStorage %>"></progress>
         </li>
     </ul>
     <input id="selected-folder" type="hidden" name="selectedFolder" value="<%= selectedFolder %>" />

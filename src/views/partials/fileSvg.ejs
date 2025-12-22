@@ -1,10 +1,14 @@
 <img
-    <% if (ext === 'jpg' || ext === 'png' || ext === 'webp' || ext === 'gif') { %>
+    <% if (ext === 'jpg' || ext === 'png' || ext === 'webp') { %>
       src = "/assets/files/img.svg"        
     <% } else if (ext === 'pdf' || ext === 'doc' || ext === 'docx' || ext === 'xls' || ext === 'xlsx' || ext === 'ppt' || ext === 'txt') { %>
       src = '/assets/files/file.svg'
+    <% } else if (ext === 'mp4' || ext === 'mp3' || 'ext' === 'wav') { %>
+      src = '/assets/files/vid.svg'
+    <% } else if (ext === 'gif') { %>
+      src = '/assets/files/gif.svg'
     <% } else { %>
       src = '/assets/files/question.svg'
-    <% } %>
+    <% }  %>
     width='35'
     aria-hidden="true" />

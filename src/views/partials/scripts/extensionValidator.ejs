@@ -1,14 +1,13 @@
 <script>
-  const selectFolder = document.getElementById('select-folder');
-  const accepted = document.getElementById('accepted-files');
-  const file = document.getElementById('file');
-  const acceptedContainer = document.getElementById('accepted');
+  function updateAcceptedFiles() {
+    const acceptedContainer = document.getElementById('accepted');
+    const accepted = document.getElementById('accepted-files');
+    const file = document.getElementById('file');
+    const selectFolder = document.getElementById('select-folder');
 
-  accepted.textContent = 'PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT';
-
-  selectFolder.addEventListener('change', () => {
-    accepted.style.display = 'inline';
     acceptedContainer.style.display = 'inline';
+    accepted.style.display = 'inline';
+
     if (selectFolder.value === 'Gif') {
       accepted.textContent = 'GIF';
       file.setAttribute('accept', '.gif');
@@ -29,5 +28,13 @@
       acceptedContainer.style.display = 'none';
       file.removeAttribute('accept');
     }
-  });
+  }
+
+  // Run once on page load
+  updateAcceptedFiles();
+
+  // Run again on change
+  document
+    .getElementById('select-folder')
+    .addEventListener('change', updateAcceptedFiles);
 </script>

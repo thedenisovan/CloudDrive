@@ -1,67 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Upload Page | SilverCloud</title>
-    <%- include('./partials/shared', {page: 'Storage Page'}) %>
-  </head>
-  <body style="display: flex; align-items: center; justify-content: center; background-color: black;">
-    <form enctype="multipart/form-data" style="padding: 1.3rem; border-radius: .5rem; width: clamp(350px, 60vw, 700px); height: clamp(540px, 70vh, 900px); background-color: white;" action="/upload" method="post" id="file-upload-form">
-      <div style="margin: .7rem 0; display: flex; justify-content: space-between; align-items: center;">
-        <h2 style="font-weight: 300; font-size: 1.4rem;">Upload Files</h2>
-        <a href='/storage?folders=All+Files' style="text-decoration: none; color: gray; font-size: 1.3rem;">X</a>
-      </div>
-      <hr>
-      <div class="flex-col">
-        <label style="margin: 1rem 0" for="select-folder">Select Folder</label>
-        <select style="background-color: white; height: 3rem; border-radius: .3rem;" name="folder" id="select-folder" required>
-          <% folders.map((folder, idx) => { %>
-            <% if (idx !== 0 && idx !== 1) { %>
-              <option value="<%= folder.name %>">
-                <%= folder.name %>
-              </option>
-            <% } else if (idx === 1) { %>
-              <option selected value="<%= folder.name %>">
-                <%= folder.name %>
-              </option>
-            <% } %>
-          <% }) %>
-        </select>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Page | SilverCloud</title>
+  <%- include('./partials/shared', {page: 'Storage Page'}) %>
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, #1a1a1a, #333); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0;">
+  <form enctype="multipart/form-data" action="/upload" method="post" id="file-upload-form" style="display: flex; flex-direction: column; gap: 1.5rem; padding: 2rem; border-radius: 1rem; width: clamp(350px, 50vw, 600px); background-color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: transform 0.2s ease-in-out;">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 0.5rem; margin-bottom: 1rem;">
+      <h2 style="font-weight: 500; font-size: 1.5rem; color: #333;">Upload Files <span style="font-size: 1.2rem;color: #666">(10mb per file)</span></h2>
+      <a href='/storage?folders=All+Files' style="text-decoration: none; color: #999; font-size: 1.3rem; transition: color 0.2s;" onmouseover="this.style.color='#ff4d4d'" onmouseout="this.style.color='#999'">X</a>
+    </div>
 
-      <div>
-        <div id="accepted">Accepted: <span id="accepted-files"></span></div>
-      </div>
+    <div style="display: flex; flex-direction: column;">
+      <label for="select-folder" style="font-weight: 500; margin-bottom: 0.5rem; color: #444;">Select Folder</label>
+      <select name="folder" id="select-folder" required style="padding: 0.8rem; border-radius: 0.5rem; border: 1px solid #ccc; font-size: 1rem; width: 100%; cursor: pointer;">
+        <% folders.map((folder, idx) => { %>
+          <% if (idx !== 0) { %>
+            <option value="<%= folder.name %>"><%= folder.name %></option>
+          <% } else if (idx === 1) { %>
+            <option selected value="<%= folder.name %>"><%= folder.name %></option>
+          <% } %>
+        <% }) %>
+      </select>
+    </div>
 
-      <p id="avail-storage">Available storage: 
-        <%= profile.usedStorage  %>
-        MB
-        <span id="new-storage" class="hidden">(new storage: </span>
-      </p>
+    <div id="drag-area" style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #aaa; border-radius: 0.7rem; padding: 2rem; text-align: center; cursor: pointer; transition: background-color 0.3s, border-color 0.3s;">
+      <p style="margin:0; font-size:1rem; color:#555;">Drag & Drop your file here<br>or click to select</p>
+      <input type="file" name="file" required id="file" style="display:none;">
+    </div>
 
-      <input id="storage-info" type="hidden" value="<%= profile.usedStorage %>">
-      <input type="file" name="file" required id="file">
-      <button id="submit-btn">Submit</button>
-    </form>
-  </body>
+    <div id="accepted" style="font-size: 0.9rem; color: #666;">Accepted: <span id="accepted-files"></span></div>
+
+    <div id="avail-storage" style="font-size: 0.9rem; color: #666;">
+      Available storage: <%= profile.usedStorage  %> MB
+      <span id="new-storage" class="hidden">(new storage: </span>
+    </div>
+
+    <input id="storage-info" type="hidden" value="<%= profile.usedStorage %>">
+    <button id="submit-btn" style="background-color: #007bff; color: white; padding: 0.8rem; font-size: 1rem; font-weight: 500; border: none; border-radius: 0.5rem; cursor: pointer; transition: background-color 0.2s;">Submit</button>
+
+  </form>
+
   <%- include('./partials/scripts/extensionValidator') %>
+
   <script>
     const usedStorage = document.getElementById('storage-info');
     const fil = document.getElementById('file');
     const submitBtn = document.getElementById('submit-btn');
     const newStorage = document.getElementById('new-storage');
-    let size;
+    const dragArea = document.getElementById('drag-area');
+    const acceptedFiles = document.getElementById('accepted-files');
 
-    fil.addEventListener('change', () => {
-      size = Number.parseFloat(fil.files[0].size / 1000000).toFixed(2);
-      const n = +usedStorage.value - +size ;
+      // Drag and Drop events
+      ['dragenter', 'dragover'].forEach(evt => {
+        dragArea.addEventListener(evt, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dragArea.style.backgroundColor = '#f0f8ff';
+          dragArea.style.borderColor = '#007bff';
+        });
+      });
 
-      newStorage.textContent += n.toFixed(2) + ' MB)';
-      newStorage.classList.remove('hidden')
+      ['dragleave', 'drop'].forEach(evt => {
+        dragArea.addEventListener(evt, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dragArea.style.backgroundColor = '';
+          dragArea.style.borderColor = '#aaa';
+        });
+      });
 
-      if (n <= 0) submitBtn.setAttribute('disabled', 'true')
-    })
+      dragArea.addEventListener('click', () => fil.click());
 
+      dragArea.addEventListener('drop', (e) => {
+        if (e.dataTransfer.files.length) {
+          fil.files = e.dataTransfer.files;
+          handleFile();
+        }
+      });
+
+    fil.addEventListener('change', handleFile);
+
+    function handleFile() {
+      const file = fil.files[0];
+      if (!file) return;
+
+      acceptedFiles.textContent = file.name;
+
+      const size = Number.parseFloat(file.size / 1000000);
+      const n = +usedStorage.value - size;
+
+      newStorage.textContent = `(new storage: ${n.toFixed(2)} MB)`;
+      newStorage.classList.remove('hidden');
+
+      if (n <= 0) submitBtn.setAttribute('disabled', 'true');
+      else submitBtn.removeAttribute('disabled');
+    }
   </script>
+</body>
 </html>
