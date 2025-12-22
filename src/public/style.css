@@ -813,7 +813,7 @@ aside {
 }
 
 #nav-ul li button {
-  transition: var(--slow);
+  transition: 0.2s;
   padding: 8px 12px !important;
   margin-bottom: 1.5rem;
   border-radius: 0.4rem;

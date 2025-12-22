@@ -11,6 +11,7 @@ import signupPage from './routes/signupPage.js';
 import signinPage from './routes/signinPage.js';
 import storagePage from './routes/storagePage.js';
 import uploadPage from './routes/uploadPage.js';
+import fileViewPage from './routes/fileViewPage.js';
 import './auth/signinUser.js'; // import local strategy controller
 
 dotenv.config();
@@ -46,6 +47,7 @@ app.use(passport.session());
 app.set('views', path.join(import.meta.dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use('/fileViewPage', fileViewPage);
 app.use('/signup', signupPage);
 app.use('/signin', signinPage);
 app.use('/storage', storagePage);

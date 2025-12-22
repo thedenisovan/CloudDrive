@@ -25,9 +25,9 @@
             </form>
           <% } %>
           <button id="new-folder"><img src="/assets/add.svg" alt="create new folder" aria-label="create new folder"></button>
-          <div id="view-container">
-            <button id="grid" class="grid active"><img  src="/assets/grid.svg" ></button>
-            <button class="list inactive"><img src="/assets/list.svg" ></button>
+          <div id="view-container" style="background-color: #ececec;">
+            <button id="grid" class="grid active"><img  src="/assets/grid.svg" aria-label="activate grid file style"></button>
+            <button class="list inactive"><img src="/assets/list.svg" aria-label="activate list file style"></button>
           </div>
           <a href="/upload"><button id="upload-btn" style="display: flex; align-items: center;"><img src="/assets/upload-1.svg" aria-hidden="true" width="25"><p style="font-size: 1.1rem;">Upload</p></button></a>
         </header>
@@ -37,7 +37,7 @@
           <%= (selectedFolder) %>
           </h2>
           <% if (files.length === 0) {%>
-          <p style="font-size: 1.4rem;font-weight: 300;">
+          <p style="font-size: 1.4rem;margin-bottom: 2rem;font-weight: 300;">
             <%= files.length %>
             files
           </p>
@@ -47,12 +47,12 @@
             <p style="font-size: 1.3rem; font-weight: 300;">Upload files to get started</p>
           </div>
          <% } else if (files.length === 1) { %>
-          <p style="font-size: 1.4rem;font-weight: 300;">
+          <p style="font-size: 1.4rem;margin-bottom: 2rem;font-weight: 300;">
             <%= files.length %>
             file
           </p>
           <% } else { %>
-            <p style="font-size: 1.4rem;font-weight: 300;">
+            <p style="font-size: 1.4rem;margin-bottom: 2rem;font-weight: 300;">
             <%= files.length %>
             files
           </p>
