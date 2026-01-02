@@ -7,6 +7,8 @@ Backend-focused learning project built to practice and demonstrate skills in ser
 You can live preview the website here: [SilverCloud Application](https://clouddrive-2iib.onrender.com))  
 _(If inactive for more than 15 minutes, it may take a moment to wake up.)_
 
+❗ **Note:** _(Using Supabase free storage—files won’t show after a week of inactivity until I reset it.)_
+
 ## Overview
 
 A simplified personal cloud storage application where users can register, log in, create folders, upload files, and manage their personal data. Each user has **20MB of personal storage**, and the project also includes a **shared account with 100MB of storage** accessible to everyone. The project is built with a responsive design to work smoothly on all devices.
