@@ -4,7 +4,6 @@
     "target": "ES2023",
     "moduleResolution": "node",
     "strict": true,
-    "esModuleInterop": true,
     "ignoreDeprecations": "5.0",
     /* Base Options: */
     "skipLibCheck": true,
@@ -25,7 +24,8 @@
     /* If your code doesn't run in the DOM: */
     "lib": ["es2022"],
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*.ts", "generated/**/*.ts"],
   "exclude": ["node_modules", "dist"]
