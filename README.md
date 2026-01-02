@@ -6,7 +6,8 @@ Backend-focused learning project built to practice and demonstrate skills in ser
 
 You can live preview the website here: [SilverCloud Application](https://clouddrive-2iib.onrender.com))  
 _(If inactive for more than 15 minutes, it may take a moment to wake up.)_
-_(Using Supabase free storage—files won’t show after a week of inactivity until I reset it.)_
+
+❗ **Note:** _(Using Supabase free storage—files won’t show after a week of inactivity until I reset it.)_
 
 ## Overview
 
